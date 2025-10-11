@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% block content %}
+  <section class="card fade-in">
+    <h2 style="margin:0 0 .6rem 0">Annonces</h2>
+    <form method="get" class="controls" style="margin-bottom:.8rem">
+      <input type="text" name="q" value="{{ filters.q }}" placeholder="Recherche globale (titre, marque, modèle)" />
+      <input type="text" name="brand" value="{{ filters.brand }}" placeholder="Marque" />
+      <input type="text" name="model" value="{{ filters.model }}" placeholder="Modèle" />
+      <input type="text" name="reg_from" value="{{ filters.reg_from }}" placeholder="Immat. depuis (YYYY-MM)" />
+      <input type="text" name="reg_to" value="{{ filters.reg_to }}" placeholder="Immat. jusqu'à (YYYY-MM)" />
+      <input type="number" step="0.01" name="min_price" value="{{ filters.min_price }}" placeholder="Prix min" />
+      <input type="number" step="0.01" name="max_price" value="{{ filters.max_price }}" placeholder="Prix max" />
+      <button class="btn">Filtrer</button>
+    </form>
+
+    <div style="overflow:auto">
+      <table class="table">
+        <thead class="muted">
+          <tr>
+            <th>Titre</th>
+            <th>Marque</th>
+            <th>Modèle</th>
+            <th>Immat.</th>
+            <th>Prix (€)</th>
+            <th>Publication</th>
+            <th>Ville</th>
+            <th>CP</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for r in rows %}
+          <tr>
+            <td>{{ r.subject }}</td>
+            <td>{{ r.car_brand }}</td>
+            <td>{{ r.car_model }}</td>
+            <td>{{ r.regdate }}</td>
+            <td>{{ '%.0f'|format(r.price) if r.price else '' }}</td>
+            <td>{{ r.first_publication_date or r.index_date }}</td>
+            <td>{{ r.location_city }}</td>
+            <td>{{ r.location_zipcode }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-top:.8rem">
+      <div class="muted">Page {{ page }}</div>
+      <div style="display:flex;gap:.5rem">
+        <a class="btn" href="?{{ request.query_params|dict|update({'page': (page-1) if page>1 else 1}) or request.query_params }}">◀ Précédent</a>
+        <a class="btn" href="?{{ request.query_params|dict|update({'page': (page+1)}) or request.query_params }}">Suivant ▶</a>
+      </div>
+    </div>
+  </section>
+{% endblock %}
+{% block scripts %}{% endblock %}
