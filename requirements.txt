@@ -1,0 +1,6 @@
+curl-cffi
+pymongo
+fastapi
+uvicorn
+apscheduler
+jinja2

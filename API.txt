@@ -1,0 +1,51 @@
+https://api.leboncoin.fr/finder/search
+
+params : 
+{"filters":{"category":{"id":"2"},"enums":{"ad_type":["offer"]},"location":{"locations":[{"locationType":"city","city":"14e Arrondissement","zipcode":"75014","label":"14e Arrondissement (75014)","region_id":"12","department_id":"75","area":{"lat":48.83292,"lng":2.3248,"default_radius":2379,"radius":5000}}]}},"limit":35,"limit_alu":3,"sort_by":"relevance","offset":35,"disable_total":true,"pivot":"{\"ids_to_display\":[\"3072786089\",\"3072785138\",\"3067306630\",\"3064727530\",\"3064170099\",\"3059582663\",\"3057850473\",\"3049530732\",\"3042240708\",\"3032855161\",\"3016217654\",\"2986118855\",\"2952415024\",\"2944172301\",\"3072781441\",\"3072780362\",\"3064378929\",\"3072779767\",\"3072779444\",\"3070264856\",\"3069914841\",\"3067049963\",\"3060870908\",\"3060399448\",\"3054233082\",\"3050626861\",\"3050626564\",\"3031390115\",\"3016746134\",\"3005774009\",\"3072778336\",\"3072774027\",\"3072773199\",\"3067569175\",\"3066768803\"],\"es_pivot\":\"1760178743000|3066768803\",\"reranker_offset\":35,\"total\":14303,\"page_number\":1}","referrer_id":"cd5977b1-216c-483b-91f1-3c06fc260471","extend":true,"listing_source":"pagination"}
+
+
+COOKIES : 
+:authority
+api.leboncoin.fr
+:method
+POST
+:path
+/finder/search
+:scheme
+https
+accept
+*/*
+accept-encoding
+gzip, deflate, br, zstd
+accept-language
+fr-FR,fr;q=0.9,en-US;q=0.8,en;q=0.7,ar-DZ;q=0.6,ar;q=0.5
+api_key
+ba0c2dad52b3ec
+content-length
+1144
+content-type
+application/json
+cookie
+__Secure-Install=051e1bd9-acfa-4142-8eea-922b37ce9fc8; cnfdVisitorId=7975a867-1af7-4f12-898e-8e32c7e875b6; didomi_token=eyJ1c2VyX2lkIjoiMTk5MzViOTQtYTg4NC02NjlhLTlmZDgtNDRjODAzYjZiZWJlIiwiY3JlYXRlZCI6IjIwMjUtMDktMTBUMjI6MjI6MzkuNzUyWiIsInVwZGF0ZWQiOiIyMDI1LTA5LTEwVDIyOjIyOjQxLjg0OVoiLCJ2ZW5kb3JzIjp7ImVuYWJsZWQiOlsiZ29vZ2xlIiwiYzpsYmNmcmFuY2UiLCJjOmdvb2dsZWFuYS00VFhuSmlnUiIsImM6cHVycG9zZWxhLTN3NFpmS0tEIiwiYzptNnB1YmxpY2ktdFhUWUROQWMiLCJjOmFmZmlsaW5ldCIsImM6c3BvbmdlY2VsbC1ueXliQUtIMiIsImM6dGlrdG9rLXJLQVlEZ2JIIiwiYzp6YW5veC1hWVl6NnpXNCIsImM6cGludGVyZXN0IiwiYzpwcmViaWRvcmctSGlqaXJZZGIiLCJjOmlnbml0aW9uby1MVkFNWmRuaiIsImM6ZGlkb21pIiwiYzpsYmNmcmFuY2UtSHkza1lNOUYiXX0sInB1cnBvc2VzIjp7ImVuYWJsZWQiOlsiZXhwZXJpZW5jZXV0aWxpc2F0ZXVyIiwibWVzdXJlYXVkaWVuY2UiLCJwZXJzb25uYWxpc2F0aW9ubWFya2V0aW5nIiwicHJpeCIsImRldmljZV9jaGFyYWN0ZXJpc3RpY3MiLCJjb21wYXJhaXNvLVkzWnkzVUV4IiwiZ2VvbG9jYXRpb25fZGF0YSJdfSwidmVuZG9yc19saSI6eyJlbmFibGVkIjpbImdvb2dsZSIsImM6cHVycG9zZWxhLTN3NFpmS0tEIl19LCJ2ZXJzaW9uIjoyLCJhYyI6IkRDS0FnQUZrQTl3Q1N3SWtnUlRBNmNDQmdFVkFKclFVR0FvUkJYT0N3WUZ0NExsZ1lSQUEuRENLQWdBRmtBOXdDU3dJa2dSVEE2Y0NCZ0VWQUpyUVVHQW9SQlhPQ3dZRnQ0TGxnWVJBQSJ9; euconsent-v2=CQXh3sAQXh3sAAHABBENB7FsAP_gAELgAAAAKENB7CfdQSFiUbJlAOtAYQxP4BAiogAABgABgwwBCBLAMIwEhGAIIADAAAACGBAAICBAAQBlCADAAAAAIAAAACAEAAAAARAAJiAAAEAAAmBICABICYAAAQAQgkiEAAEAgAIAAAogSEgAAAAAHAAAAAAAAAAAAAAAAAEAAAAAAAAAAgAAAAAACAAAAAAEAFAAAAAAAAAAAAAAAAAEAAAAAAAABBQiBgAAsAB4AFQAOAAeABAACQAFQAMoAaABqADwAIYATAAoQBcAF0AMQAfAA_ACEAEdAMoAywBogDnAHcAP2Ag4CEAEWAIxARwBHQDRAGvANoAj0BNICbQFHwKaApsBWQC2AF5gMkAZOAyyBq4GsAQBAheBHYChAAYoADAAEFyhgAGAAILlEAAMAAQXKAAA.f_wACFwAAAAA; _ga=GA1.1.282550379.1757542961; FPID=FPID2.2.X4Zg9CxX1e%2BkLH%2BHIt8q%2FeTMLu7LEJ%2Bd%2FBGB3CZ5Mws%3D.1757542961; FPAU=1.2.319067111.1757542744; _pcid=%7B%22browserId%22%3A%22mfejp1w9sagzdics%22%2C%22_t%22%3A%22mv2yms12%7Cmfejpap2%22%7D; _pctx=%7Bu%7DN4IgrgzgpgThIC4B2YA2qA05owMoBcBDfSREQpAeyRCwgEt8oBJAE0RXSwH18yBbAG4AmAJ78IARgAsAH34AzKACsADoVXSQAXyA; _scid=0wL3eXYb1kOekKRTMWfZigsXs_q4Aol6; ry_ry-l3b0nco_realytics=eyJpZCI6InJ5X0M3OEQ1NzM4LUIxMjMtNEFCNy1BMTNDLUU1MDk2OTY4MTA5OCIsImNpZCI6bnVsbCwiZXhwIjoxNzg5MDc4OTY3MDM2LCJjcyI6MX0%3D; __gsas=ID=d9fb6687e888fdf3:T=1757542749:RT=1757542749:S=ALNI_MawM1fQj-hpnvOr38QStpSzjfiIxQ; _sharedid=1630adc2-a686-48ea-8f29-7e233d03e434; _sharedid_cst=uywELI4sIg%3D%3D; deviceId=bb01413e-cb79-457d-bfbb-6fe83f178466; _gcl_au=1.1.804288711.1757589926; _gcl_gs=2.1.k1$i1758449198$u233709187; _scid_r=74L3eXYb1kOekKRTMWfZigsXs_q4Aol6_F_mzA; FPGCLGS=2.1.k1$i1758449197$u233709187; cto_bidid=ZVRzvF9qTUd0Mm5JelNwbnhNQ1h6Z2lWNThzM0IwZkIlMkZDcnJBUHRLVTI0WFFDOEduaWRQZVZaZ0lEYnkxY0dBYWFkOUdTNDJITnl5OVZXYWhqVnVrMjV6RVEwYnl4YXNhNzZjb3ZxQVlhWUJjOXYwJTNE; cto_bundle=_Pa8r19NN29ZMWZjRHZQZm9XeVVUaFJUWjQwOUtERUx4VTVuNzRmN1NVMmhDYzNYcGtwUnd1RThCTVc5T2ljcU1TVzA3JTJGaXZiRlZFdzJXRms0bUhqNjBiRnFXM2JLYzY3Vm91dTBTJTJCRSUyRiUyQk9SYkxmYlpSM2lWcVJaaFJhblI2c3VFT0ZhVVhFMkdsV1FDMThqS1VKQnJ6aUlkVjBDN0VCeiUyQlg0cXc0U2RrWSUyQkljczglM0Q; _gcl_aw=GCL.1758449216.Cj0KCQjwxL7GBhDXARIsAGOcmINP09KbaJ-jNYWrTcqUvIT9akzmzYmuN2qtjfrEhhsZEexFngofB0QaAotdEALw_wcB; FPGCLAW=2.1.kCj0KCQjwxL7GBhDXARIsAGOcmINP09KbaJ-jNYWrTcqUvIT9akzmzYmuN2qtjfrEhhsZEexFngofB0QaAotdEALw_wcB$i1758449214; __gads=ID=9149b101c0033056:T=1757542759:RT=1758449215:S=ALNI_MZYTJxmS9yHIIXL8vBe-SPONlRLqQ; __gpi=UID=0000111869aa8af7:T=1757542759:RT=1758449215:S=ALNI_MZPonqaiabO-nh0klOQ_iI2kgwU4g; __eoi=ID=e15499828f61e432:T=1757542759:RT=1758449215:S=AA-AfjZeilywndZanC-uDuRtfPFs; _ga_Z707449XJ2=GS2.1.s1758449208$o5$g1$t1758449299$j31$l0$h297115132; lg=1; adview_clickmeter=search__listing__10__80d233b9-709b-4439-bb86-270b6cb04dbf; datadome=3J7DqcVrPlIzVpSDAB5Oe0pQzTJ189EY50wG8Ym6XVURoul~JdCDcSBDszg_rrpF3~AeBDn8yaNk4DMrvTyhIBTdv6MyEAfIXaRLwzd9fCr7eC~AQurci5Wh2fPf_tCk
+origin
+https://www.leboncoin.fr
+priority
+u=1, i
+referer
+https://www.leboncoin.fr/c/voitures?locations=14e+Arrondissement_75014__48.83292_2.3248_2379_5000
+sec-ch-ua
+"Google Chrome";v="141", "Not?A_Brand";v="8", "Chromium";v="141"
+sec-ch-ua-mobile
+?0
+sec-ch-ua-platform
+"Windows"
+sec-fetch-dest
+empty
+sec-fetch-mode
+cors
+sec-fetch-site
+same-site
+user-agent
+Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36
+x-lbc-experiment
+eyJ2ZXJzaW9uIjoxLCJyb2xsb3V0X3Zpc2l0b3JfaWQiOiI3OTc1YTg2Ny0xYWY3LTRmMTItODk4ZS04ZTMyYzdlODc1YjYifQ==
