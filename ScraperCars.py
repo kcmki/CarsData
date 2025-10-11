@@ -5,6 +5,7 @@ import time
 import logging
 from typing import Any, Dict, List, Optional
 import configparser
+from datetime import datetime, timezone
 
 try:
     from curl_cffi import requests
@@ -33,7 +34,7 @@ class ScraperCars:
         self,
         start_date: Optional[str] = None,
         end_date: Optional[str] = None,
-        max_results: int = 100,
+        max_results: int = 1000,
         params: Optional[Dict[str, Any]] = None,
         ini_path: Optional[str] = None,
         headers: Optional[Dict[str, str]] = None,
@@ -47,6 +48,14 @@ class ScraperCars:
         self.end_date = end_date
         self.max_results = int(max_results or 0)
         self.timeout = timeout
+        # date limit support (stop pagination when reaching ads older than this)
+        self.date_limit_str: Optional[str] = start_date
+        self.date_limit_dt: Optional[datetime] = self._parse_dt(start_date) if start_date else None
+        self.date_fields: List[str] = [
+            "first_publication_date",
+            "index_date",
+            "publication_date",
+        ]
 
         # defaults inferred from API.txt
         self.defaults = {
@@ -138,6 +147,21 @@ class ScraperCars:
                             self.params[key] = ival
                         except Exception:
                             self.params[key] = val
+        # Optional collector section: date_limit and date_fields
+        if cfg.has_section("collector"):
+            if cfg.has_option("collector", "date_limit"):
+                self.date_limit_str = cfg.get("collector", "date_limit")
+                self.date_limit_dt = self._parse_dt(self.date_limit_str)
+            if cfg.has_option("collector", "date_fields"):
+                raw = cfg.get("collector", "date_fields")
+                try:
+                    # allow JSON array
+                    arr = json.loads(raw)
+                    if isinstance(arr, list):
+                        self.date_fields = [str(x) for x in arr if x]
+                except Exception:
+                    # allow comma-separated
+                    self.date_fields = [s.strip() for s in raw.split(",") if s.strip()]
 
         # Optional headers section
         if cfg.has_section("headers"):
@@ -205,6 +229,35 @@ class ScraperCars:
             raise ValueError(f"Failed to parse JSON response: {e}\nResponse text: {resp.text}")
 
     @staticmethod
+    def _parse_dt(s: Optional[str]) -> Optional[datetime]:
+        if not s:
+            return None
+        fmts = [
+            "%Y-%m-%d %H:%M:%S",
+            "%Y-%m-%d %H:%M:%S %z",
+            "%Y-%m-%dT%H:%M:%S%z",
+            "%Y-%m-%dT%H:%M:%S",
+            "%Y-%m-%d",
+        ]
+        for f in fmts:
+            try:
+                dt = datetime.strptime(s, f)
+                if dt.tzinfo is None:
+                    dt = dt.replace(tzinfo=timezone.utc)
+                return dt
+            except Exception:
+                continue
+        return None
+
+    def _extract_ad_datetime(self, ad: Dict[str, Any]) -> Optional[datetime]:
+        for key in self.date_fields:
+            if key in ad and ad[key]:
+                dt = self._parse_dt(str(ad[key]))
+                if dt:
+                    return dt
+        return None
+
+    @staticmethod
     def _parse_cookie_string(cookie_header: str) -> Dict[str, str]:
         jar: Dict[str, str] = {}
         for part in cookie_header.split(";"):
@@ -214,6 +267,29 @@ class ScraperCars:
             k, v = part.split("=", 1)
             jar[k.strip()] = v.strip()
         return jar
+
+    @staticmethod
+    def deduplicate_rows(rows: List[Dict[str, Any]], key_field: str = "id") -> List[Dict[str, Any]]:
+        """Deduplicate rows by primary key 'id'. If 'id' is missing/empty, fallback to 'list_id'.
+
+        Args:
+            rows: list of ad dicts
+            key_field: primary key field to prefer (default 'id')
+
+        Returns:
+            Unique list preserving first occurrence order.
+        """
+        seen = set()
+        unique: List[Dict[str, Any]] = []
+        for r in rows:
+            k = r.get(key_field)
+            if not k:
+                # fallback
+                k = r.get("list_id") or r.get("unique_key")
+            if k and k not in seen:
+                seen.add(k)
+                unique.append(r)
+        return unique
 
     def scrape(self) -> List[Dict[str, Any]]:
         """Main scraping loop. Paginates until max_results or no more items.
@@ -225,7 +301,9 @@ class ScraperCars:
         limit = int(self.params.get("limit", 35) or 35)
 
         # if max_results smaller than page limit, request smaller chunks
+        older_reached = False
         while True:
+            
             if self.max_results and len(collected) >= self.max_results:
                 break
 
@@ -265,16 +343,36 @@ class ScraperCars:
                 logger.info("No more hits returned; stopping. Offset=%s", offset)
                 break
 
-            collected.extend(hits)
+            # Filter by date_limit when provided; stop when encountering older ads
+            if self.date_limit_dt is not None:
+                page_kept: List[Dict[str, Any]] = []
+                for ad in hits:
+                    ad_dt = self._extract_ad_datetime(ad)
+                    if ad_dt is None:
+                        # skip unknown date to avoid accidental early stop
+                        continue
+                    if ad_dt >= self.date_limit_dt:
+                        page_kept.append(ad)
+                    else:
+                        older_reached = True
+                        # since sorted desc by time, remaining will be older as well
+                collected.extend(page_kept)
+            else:
+                collected.extend(hits)
 
             # advance offset
             offset += len(hits)
 
             # stop if fewer than requested were returned
-            if len(hits) < this_limit:
+            if len(hits) < this_limit or older_reached:
                 break
+            print("Sleeping 5s to be nice to server...\n got ", len(collected), " items so far.")
+            time.sleep(5)  # be nice
 
-        # trim to max_results
+        # de-duplicate by the API ad id (fallback to list_id if id missing)
+        collected = self.deduplicate_rows(collected, key_field="id")
+
+        # trim to max_results after de-duplication
         if self.max_results:
             collected = collected[: self.max_results]
 
@@ -289,3 +387,7 @@ class ScraperCars:
 if __name__ == "__main__":
     # quick demo when run directly (will not execute network call by default)
     print("ScraperCars module. Use Test.py to run an example.")
+
+    
+    
+    

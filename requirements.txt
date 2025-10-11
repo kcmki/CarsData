@@ -2,5 +2,7 @@ curl-cffi
 pymongo
 fastapi
 uvicorn
-apscheduler
+APScheduler
 jinja2
+supabase
+psycopg[binary]

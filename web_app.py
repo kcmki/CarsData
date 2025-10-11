@@ -14,17 +14,37 @@ from datetime import datetime, timezone
 from typing import Any, Dict
 
 from fastapi import FastAPI, Request, BackgroundTasks
+from contextlib import asynccontextmanager
 from fastapi.responses import HTMLResponse, JSONResponse, RedirectResponse
 from fastapi.templating import Jinja2Templates
 
-from pymongo import MongoClient
-
-from run_collector import run_collect, load_config, get_mongo_client
+from run_collector import run_collect, load_config, get_supabase_client
 
 APP_TITLE = "LBC Collector"
 CONFIG_PATH = os.environ.get("WEB_CONFIG", "config.ini")
 
-app = FastAPI(title=APP_TITLE)
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    # on startup
+    cfg = load_config(CONFIG_PATH)
+    cron_env = os.environ.get("WEB_CRON")
+    if cron_env:
+        parts = cron_env.split()
+        if len(parts) == 5:
+            scheduler.add_job(scheduled_run, CronTrigger.from_crontab(cron_env))
+    else:
+        scheduler.add_job(scheduled_run, CronTrigger(hour="1,13", minute=0))
+    scheduler.start()
+    try:
+        yield
+    finally:
+        # on shutdown
+        try:
+            scheduler.shutdown(wait=False)
+        except Exception:
+            pass
+
+app = FastAPI(title=APP_TITLE, lifespan=lifespan)
 templates = Jinja2Templates(directory="templates")
 
 
@@ -36,14 +56,9 @@ scheduler = AsyncIOScheduler()
 _RUN_LOCK = asyncio.Lock()
 
 
-def get_db_collections(cfg) -> Dict[str, Any]:
-    mongo_cfg = cfg.get("mongodb", {})
-    client = get_mongo_client(mongo_cfg)
-    db_name = mongo_cfg.get("database", "leboncoin")
-    col_name = mongo_cfg.get("collection", "ads")
-    runs_collection_name = mongo_cfg.get("runs_collection", "runs")
-    db = client[db_name]
-    return {"ads": db[col_name], "runs": db[runs_collection_name]}
+def get_supabase(cfg):
+    sb_cfg = cfg.get("supabase", {})
+    return get_supabase_client(sb_cfg), sb_cfg
 
 
 async def scheduled_run():
@@ -52,27 +67,17 @@ async def scheduled_run():
         run_collect(CONFIG_PATH)
 
 
-@app.on_event("startup")
-async def startup_event():
-    cfg = load_config(CONFIG_PATH)
-    # schedule twice per day; override with WEB_CRON if provided (e.g., "0 1,13 * * *")
-    cron_env = os.environ.get("WEB_CRON")
-    if cron_env:
-        # user provided cron in 5-part format; default timezone UTC
-        parts = cron_env.split()
-        if len(parts) == 5:
-            scheduler.add_job(scheduled_run, CronTrigger.from_crontab(cron_env))
-    else:
-        # default: run at 01:00 and 13:00 UTC
-        scheduler.add_job(scheduled_run, CronTrigger(hour="1,13", minute=0))
-    scheduler.start()
+ 
 
 
 @app.get("/", response_class=HTMLResponse)
 async def dashboard(request: Request):
     cfg = load_config(CONFIG_PATH)
-    cols = get_db_collections(cfg)
-    last_runs = list(cols["runs"].find().sort("finished_at", -1).limit(20))
+    supa, sb_cfg = get_supabase(cfg)
+    table_runs = sb_cfg.get("runs_table", "runs")
+    # Get last runs ordered by finished_at desc
+    res = supa.table(table_runs).select("*").order("finished_at", desc=True).limit(20).execute()
+    last_runs = res.data or []
     last_run = last_runs[0] if last_runs else None
     # Scheduler next run info (may be None if not scheduled)
     next_runs = scheduler.get_jobs()
@@ -101,14 +106,10 @@ async def run_now():
 @app.get("/api/runs")
 async def api_runs(limit: int = 20):
     cfg = load_config(CONFIG_PATH)
-    cols = get_db_collections(cfg)
-    docs = list(cols["runs"].find().sort("finished_at", -1).limit(limit))
-    # convert datetimes to isoformat
-    for d in docs:
-        for k in ("started_at", "finished_at"):
-            if k in d and d[k] is not None:
-                d[k] = d[k].isoformat()
-        d["_id"] = str(d["_id"])  # stringify ObjectId
+    supa, sb_cfg = get_supabase(cfg)
+    table_runs = sb_cfg.get("runs_table", "runs")
+    res = supa.table(table_runs).select("*").order("finished_at", desc=True).limit(limit).execute()
+    docs = res.data or []
     return JSONResponse(docs)
 
 
