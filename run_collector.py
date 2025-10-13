@@ -507,7 +507,7 @@ def run_collect(
     max_results: int = 1000,
     max_retries: int = 3,
     retry_sleep: int = 30,
-    nodup: bool = False,
+    nodup: bool = True,
 ):
     """Run one collection cycle with retries; returns dict with run metadata and stats.
     Return keys: success, attempts, count_scraped, stats, error (optional), started_at, finished_at.
