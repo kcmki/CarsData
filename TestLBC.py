@@ -1,17 +1,17 @@
 """
-Test harness for ScraperCars.
+Test harness for ScraperLBC.
 
 Usage examples:
   - Read config from `config.ini` (if present) and run:
       python Test.py
   - Or pass simple parameters via environment or modify the bottom of this file.
 
-This script demonstrates instantiation and running of ScraperCars.
+This script demonstrates instantiation and running of ScraperLBC.
 """
 import argparse
 import json
 import configparser
-from ScraperCars import ScraperCars
+from scrapers.ScraperLBC import ScraperLBC
 
 
 def load_config(path: str):
@@ -54,7 +54,7 @@ def main():
     impersonate = args.impersonate or client.get("impersonate")
     referer = args.referer
 
-    scraper = ScraperCars(
+    scraper = ScraperLBC(
         start_date=args.start,
         end_date=args.end,
         max_results=args.max,

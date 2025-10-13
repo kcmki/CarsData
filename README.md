@@ -1,10 +1,10 @@
-ScraperCars
+ScraperLBC
 ============
 
 Simple scraper for leboncoin's "finder/search" API using curl_cffi.requests.
 
 Files:
-- `ScraperCars.py` - main scraper class
+- `ScraperLBC.py` - main scraper class
 - `Test.py` - example/test harness that reads `config.ini` and runs the scraper
 - `config.ini.example` - example config for API params and headers/cookies/client/mongodb
 - `requirements.txt` - required Python packages
@@ -72,6 +72,6 @@ Render.com
 Notes
 -----
 - The class uses `curl_cffi.requests`; if you prefer `requests` replace the import and adjust the `send_request` method.
-- The API may require additional authentication or cookies; the default headers include an `api_key` inferred from the attachment but this may be rate-limited or invalid. Adjust headers in the `ScraperCars` constructor or via `config.ini`.
+- The API may require additional authentication or cookies; the default headers include an `api_key` inferred from the attachment but this may be rate-limited or invalid. Adjust headers in the `ScraperLBC` constructor or via `config.ini`.
 - All date/time fields are stored as epoch seconds (bigint) in Supabase: `first_publication_date`, `expiration_date`, `index_date`, `first_seen_at`, `updated_at`, and run `started_at`/`finished_at`.
 # CarsData

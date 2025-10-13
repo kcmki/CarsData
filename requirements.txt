@@ -6,3 +6,4 @@ APScheduler
 jinja2
 supabase
 psycopg[binary]
+beautifulsoup4

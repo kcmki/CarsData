@@ -2,7 +2,7 @@
 FastAPI web app providing:
 - Dashboard: last run info, recent runs, next scheduled run, button to run now
 - API endpoints to fetch runs and trigger a run
-- APScheduler to run collector twice per day
+- APScheduler to run collector every 30 minutes by default
 
 Environment/config:
 - Reads config.ini (path via WEB_CONFIG or default ./config.ini)
@@ -33,7 +33,8 @@ async def lifespan(app: FastAPI):
         if len(parts) == 5:
             scheduler.add_job(scheduled_run, CronTrigger.from_crontab(cron_env))
     else:
-        scheduler.add_job(scheduled_run, CronTrigger(hour="1,13", minute=0))
+        # Default: run every 30 minutes
+        scheduler.add_job(scheduled_run, CronTrigger(minute="*/30"))
     scheduler.start()
     try:
         yield
@@ -63,8 +64,18 @@ def get_supabase(cfg):
 
 async def scheduled_run():
     async with _RUN_LOCK:
-        # run with defaults from config
-        run_collect(CONFIG_PATH)
+        # Run LBC then mobilede sequentially by controlling SOURCES env var
+        prev = os.environ.get("SOURCES")
+        try:
+            os.environ["SOURCES"] = "lbc"
+            await asyncio.to_thread(run_collect, CONFIG_PATH)
+            os.environ["SOURCES"] = "mobilede"
+            await asyncio.to_thread(run_collect, CONFIG_PATH)
+        finally:
+            if prev is not None:
+                os.environ["SOURCES"] = prev
+            else:
+                os.environ.pop("SOURCES", None)
 
 
  
@@ -99,8 +110,21 @@ async def run_now():
     if _RUN_LOCK.locked():
         return JSONResponse({"status": "busy", "detail": "A run is already in progress"}, status_code=409)
     async with _RUN_LOCK:
-        run = await asyncio.to_thread(run_collect, CONFIG_PATH)
-        return JSONResponse({"status": "ok", "run": run})
+        prev = os.environ.get("SOURCES")
+        results = []
+        try:
+            os.environ["SOURCES"] = "lbc"
+            res_lbc = await asyncio.to_thread(run_collect, CONFIG_PATH)
+            results.append({"source": "lbc", "result": res_lbc})
+            os.environ["SOURCES"] = "mobilede"
+            res_mob = await asyncio.to_thread(run_collect, CONFIG_PATH)
+            results.append({"source": "mobilede", "result": res_mob})
+        finally:
+            if prev is not None:
+                os.environ["SOURCES"] = prev
+            else:
+                os.environ.pop("SOURCES", None)
+        return JSONResponse({"status": "ok", "runs": results})
 
 
 @app.get("/api/runs")
@@ -114,47 +138,73 @@ async def api_runs(limit: int = 20):
 
 
 @app.get("/ads", response_class=HTMLResponse)
-async def ads_page(request: Request,
-                   q: str | None = None,
-                   brand: str | None = None,
-                   model: str | None = None,
-                   reg_from: str | None = None,
-                   reg_to: str | None = None,
-                   min_price: float | None = None,
-                   max_price: float | None = None,
-                   page: int = 1,
-                   page_size: int = 20):
+async def ads_page(
+    request: Request,
+    q: str | None = None,
+    brand: str | None = None,
+    model: str | None = None,
+    reg_from: str | None = None,
+    reg_to: str | None = None,
+    min_price: float | None = None,
+    max_price: float | None = None,
+    source: str = "lbc",  # lbc | mobilede | all
+    page: int = 1,
+    page_size: int = 20,
+):
     cfg = load_config(CONFIG_PATH)
     supa, sb_cfg = get_supabase(cfg)
-    table_ads = sb_cfg.get("ads_table", "ads")
+    lbc_table = sb_cfg.get("lbc_table", "ads")
+    mobilede_table = sb_cfg.get("mobilede_table", "ads")
 
-    # Build query
-    query = supa.table(table_ads).select("unique_key,subject,car_brand,car_model,regdate,price,first_publication_date,index_date,location_city,location_zipcode").order("first_publication_date", desc=True)
+    def build_query(table_name: str):
+        qbuilder = supa.table(table_name).select(
+            "unique_key,subject,car_brand,car_model,regdate,price,first_publication_date,index_date,location_city,location_zipcode"
+        ).order("first_publication_date", desc=True)
+        if brand:
+            qbuilder = qbuilder.ilike("car_brand", f"%{brand}%")
+        if model:
+            qbuilder = qbuilder.ilike("car_model", f"%{model}%")
+        if q:
+            qbuilder = qbuilder.or_(
+                f"subject.ilike.%{q}%,car_model.ilike.%{q}%,car_brand.ilike.%{q}%"
+            )
+        if min_price is not None:
+            qbuilder = qbuilder.gte("price", min_price)
+        if max_price is not None:
+            qbuilder = qbuilder.lte("price", max_price)
+        if reg_from:
+            qbuilder = qbuilder.gte("regdate", reg_from)
+        if reg_to:
+            qbuilder = qbuilder.lte("regdate", reg_to)
+        return qbuilder
 
-    if brand:
-        query = query.ilike("car_brand", f"%{brand}%")
-    if model:
-        query = query.ilike("car_model", f"%{model}%")
-    if q:
-        query = query.or_(
-            f"subject.ilike.%{q}%,car_model.ilike.%{q}%,car_brand.ilike.%{q}%"
-        )
-    if min_price is not None:
-        query = query.gte("price", min_price)
-    if max_price is not None:
-        query = query.lte("price", max_price)
-    # regdate expected like YYYY or YYYY-MM; we filter using ilike if string
-    if reg_from:
-        query = query.gte("regdate", reg_from)
-    if reg_to:
-        query = query.lte("regdate", reg_to)
-
-    # pagination
     page = max(1, page)
     start = (page - 1) * page_size
     end = start + page_size - 1
-    res = query.range(start, end).execute()
-    rows = res.data or []
+
+    rows: list[dict] = []
+    selected_source = source.lower().strip()
+    if selected_source in ("", "lbc"):
+        res = build_query(lbc_table).range(start, end).execute()
+        rows = res.data or []
+    elif selected_source == "mobilede":
+        res = build_query(mobilede_table).range(start, end).execute()
+        rows = res.data or []
+    else:  # all -> merge in memory
+        # fetch a bit more from each to improve merged pagination
+        fetch_each = page_size
+        res1 = build_query(lbc_table).range(0, fetch_each - 1).execute()
+        res2 = build_query(mobilede_table).range(0, fetch_each - 1).execute()
+        r1 = res1.data or []
+        r2 = res2.data or []
+        merged = r1 + r2
+        def _dt_key(r):
+            # sort by first_publication_date desc, fallback index_date
+            fp = r.get("first_publication_date") or ""
+            idx = r.get("index_date") or ""
+            return (fp or idx or "")
+        merged.sort(key=_dt_key, reverse=True)
+        rows = merged[start:end + 1]
 
     return templates.TemplateResponse(
         "ads.html",
@@ -165,6 +215,7 @@ async def ads_page(request: Request,
             "page": page,
             "page_size": page_size,
             "filters": {"q": q or "", "brand": brand or "", "model": model or "", "reg_from": reg_from or "", "reg_to": reg_to or "", "min_price": min_price or "", "max_price": max_price or ""},
+            "source": selected_source,
         },
     )
 

@@ -1,0 +1,1935 @@
+[
+  {
+    "source": "mobilede",
+    "id": "432933445",
+    "list_id": 432933445,
+    "url": "https://www.automobile.fr/Voiture/Toyota-Auris-Cool-1,33-l-Dual-VVT-i/vhc:car,pgn:1,pgs:50,dmg:false/pg:vipcar/432933445.html",
+    "subject": "Toyota Auris Cool 1,33-l-Dual-VVT-i KLIMAAUTOMATIK",
+    "body": null,
+    "category_id": "cars",
+    "category_name": "Voitures",
+    "ad_type": "offer",
+    "status": "active",
+    "price": [
+      5350.0
+    ],
+    "price_cents": null,
+    "first_publication_date": null,
+    "expiration_date": null,
+    "index_date": "2025-10-12T10:31:36+0000",
+    "images": {
+      "nb_images": null,
+      "thumb_url": "data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==",
+      "small_url": "data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==",
+      "urls": [
+        "data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+      ],
+      "urls_thumb": [
+        "data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+      ],
+      "urls_large": null
+    },
+    "location": {
+      "country_id": "FR",
+      "region_id": null,
+      "region_name": null,
+      "department_id": null,
+      "department_name": null,
+      "city": "Ochtendung",
+      "city_label": "Ochtendung",
+      "zipcode": "56299",
+      "lat": null,
+      "lng": null
+    },
+    "owner": {
+      "store_id": null,
+      "user_id": null,
+      "type": null,
+      "name": null
+    },
+    "attributes": [
+      {
+        "key": "brand",
+        "value": "Toyota",
+        "value_label": "Toyota"
+      },
+      {
+        "key": "model",
+        "value": "Auris",
+        "value_label": "Auris"
+      },
+      {
+        "key": "regdate",
+        "value": "2013-04",
+        "value_label": "2013-04"
+      },
+      {
+        "key": "mileage",
+        "value": 134000,
+        "value_label": "134000"
+      },
+      {
+        "key": "fuel",
+        "value": "Essence",
+        "value_label": "Essence"
+      },
+      {
+        "key": "gearbox",
+        "value": "Boîte manuelle",
+        "value_label": "Boîte manuelle"
+      },
+      {
+        "key": "vehicle_type",
+        "value": "Berline",
+        "value_label": "Berline"
+      },
+      {
+        "key": "vehicule_color",
+        "value": "Gris",
+        "value_label": "Gris"
+      },
+      {
+        "key": "doors",
+        "value": 4,
+        "value_label": "4"
+      },
+      {
+        "key": "horse_power_din",
+        "value": 99,
+        "value_label": "99"
+      }
+    ]
+  },
+  {
+    "source": "mobilede",
+    "id": "438700735",
+    "list_id": 438700735,
+    "url": "https://www.automobile.fr/Voiture/Kia-Stonic-Vision-FACELIFT-1.0-Navi-PDCv-h/vhc:car,pgn:1,pgs:50,dmg:false/pg:vipcar/438700735.html",
+    "subject": "Kia Stonic Vision FACELIFT 1.0 Navi PDCv+h Rückfahrk",
+    "body": null,
+    "category_id": "cars",
+    "category_name": "Voitures",
+    "ad_type": "offer",
+    "status": "active",
+    "price": [
+      23488.0
+    ],
+    "price_cents": null,
+    "first_publication_date": null,
+    "expiration_date": null,
+    "index_date": "2025-10-12T10:31:36+0000",
+    "images": {
+      "nb_images": null,
+      "thumb_url": null,
+      "small_url": null,
+      "urls": null,
+      "urls_thumb": null,
+      "urls_large": null
+    },
+    "location": {
+      "country_id": "FR",
+      "region_id": null,
+      "region_name": null,
+      "department_id": null,
+      "department_name": null,
+      "city": "Erkelenz",
+      "city_label": "Erkelenz",
+      "zipcode": "41812",
+      "lat": null,
+      "lng": null
+    },
+    "owner": {
+      "store_id": null,
+      "user_id": null,
+      "type": null,
+      "name": null
+    },
+    "attributes": [
+      {
+        "key": "brand",
+        "value": "Kia",
+        "value_label": "Kia"
+      },
+      {
+        "key": "model",
+        "value": "Stonic",
+        "value_label": "Stonic"
+      },
+      {
+        "key": "fuel",
+        "value": "Essence",
+        "value_label": "Essence"
+      },
+      {
+        "key": "gearbox",
+        "value": "Boîte manuelle",
+        "value_label": "Boîte manuelle"
+      },
+      {
+        "key": "vehicule_color",
+        "value": "Bleu",
+        "value_label": "Bleu"
+      },
+      {
+        "key": "doors",
+        "value": 4,
+        "value_label": "4"
+      },
+      {
+        "key": "horse_power_din",
+        "value": 101,
+        "value_label": "101"
+      }
+    ]
+  },
+  {
+    "source": "mobilede",
+    "id": "434149048",
+    "list_id": 434149048,
+    "url": "https://www.automobile.fr/Voiture/Mercedes-Benz-Avantgarde/vhc:car,pgn:1,pgs:50,dmg:false/pg:vipcar/434149048.html",
+    "subject": "Mercedes-Benz Avantgarde",
+    "body": null,
+    "category_id": "cars",
+    "category_name": "Voitures",
+    "ad_type": "offer",
+    "status": "active",
+    "price": [
+      3199.0
+    ],
+    "price_cents": null,
+    "first_publication_date": null,
+    "expiration_date": null,
+    "index_date": "2025-10-12T10:31:36+0000",
+    "images": {
+      "nb_images": null,
+      "thumb_url": "data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==",
+      "small_url": "data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==",
+      "urls": [
+        "data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+      ],
+      "urls_thumb": [
+        "data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+      ],
+      "urls_large": null
+    },
+    "location": {
+      "country_id": "FR",
+      "region_id": null,
+      "region_name": null,
+      "department_id": null,
+      "department_name": null,
+      "city": "Nürnberg",
+      "city_label": "Nürnberg",
+      "zipcode": "90443",
+      "lat": null,
+      "lng": null
+    },
+    "owner": {
+      "store_id": null,
+      "user_id": null,
+      "type": null,
+      "name": null
+    },
+    "attributes": [
+      {
+        "key": "brand",
+        "value": "Mercedes-Benz",
+        "value_label": "Mercedes-Benz"
+      },
+      {
+        "key": "model",
+        "value": "Avantgarde",
+        "value_label": "Avantgarde"
+      },
+      {
+        "key": "regdate",
+        "value": "2009-05",
+        "value_label": "2009-05"
+      },
+      {
+        "key": "mileage",
+        "value": 172300,
+        "value_label": "172300"
+      },
+      {
+        "key": "fuel",
+        "value": "Essence",
+        "value_label": "Essence"
+      },
+      {
+        "key": "gearbox",
+        "value": "Boîte manuelle",
+        "value_label": "Boîte manuelle"
+      },
+      {
+        "key": "vehicle_type",
+        "value": "Berline",
+        "value_label": "Berline"
+      },
+      {
+        "key": "vehicule_color",
+        "value": "Noir",
+        "value_label": "Noir"
+      },
+      {
+        "key": "doors",
+        "value": 4,
+        "value_label": "4"
+      },
+      {
+        "key": "horse_power_din",
+        "value": 116,
+        "value_label": "116"
+      }
+    ]
+  },
+  {
+    "source": "mobilede",
+    "id": "434152180",
+    "list_id": 434152180,
+    "url": "https://www.automobile.fr/Voiture/Opel-Agila-1.0/vhc:car,pgn:1,pgs:50,dmg:false/pg:vipcar/434152180.html",
+    "subject": "Opel Agila 1.0",
+    "body": null,
+    "category_id": "cars",
+    "category_name": "Voitures",
+    "ad_type": "offer",
+    "status": "active",
+    "price": [
+      749.0
+    ],
+    "price_cents": null,
+    "first_publication_date": null,
+    "expiration_date": null,
+    "index_date": "2025-10-12T10:31:36+0000",
+    "images": {
+      "nb_images": null,
+      "thumb_url": "data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==",
+      "small_url": "data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==",
+      "urls": [
+        "data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+      ],
+      "urls_thumb": [
+        "data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+      ],
+      "urls_large": null
+    },
+    "location": {
+      "country_id": "FR",
+      "region_id": null,
+      "region_name": null,
+      "department_id": null,
+      "department_name": null,
+      "city": "Nürnberg",
+      "city_label": "Nürnberg",
+      "zipcode": "90443",
+      "lat": null,
+      "lng": null
+    },
+    "owner": {
+      "store_id": null,
+      "user_id": null,
+      "type": null,
+      "name": null
+    },
+    "attributes": [
+      {
+        "key": "brand",
+        "value": "Opel",
+        "value_label": "Opel"
+      },
+      {
+        "key": "model",
+        "value": "Agila",
+        "value_label": "Agila"
+      },
+      {
+        "key": "regdate",
+        "value": "2001-06",
+        "value_label": "2001-06"
+      },
+      {
+        "key": "mileage",
+        "value": 121640,
+        "value_label": "121640"
+      },
+      {
+        "key": "fuel",
+        "value": "Essence",
+        "value_label": "Essence"
+      },
+      {
+        "key": "gearbox",
+        "value": "Boîte manuelle",
+        "value_label": "Boîte manuelle"
+      },
+      {
+        "key": "vehicule_color",
+        "value": "Bleu",
+        "value_label": "Bleu"
+      },
+      {
+        "key": "doors",
+        "value": 4,
+        "value_label": "4"
+      },
+      {
+        "key": "horse_power_din",
+        "value": 58,
+        "value_label": "58"
+      }
+    ]
+  },
+  {
+    "source": "mobilede",
+    "id": "438700704",
+    "list_id": 438700704,
+    "url": "https://www.automobile.fr/Voiture/Renault-Megane-III-Grandtour-Expression/vhc:car,pgn:1,pgs:50,dmg:false/pg:vipcar/438700704.html",
+    "subject": "Renault Megane III Grandtour Expression",
+    "body": null,
+    "category_id": "cars",
+    "category_name": "Voitures",
+    "ad_type": "offer",
+    "status": "active",
+    "price": [
+      2890.0
+    ],
+    "price_cents": null,
+    "first_publication_date": null,
+    "expiration_date": null,
+    "index_date": "2025-10-12T10:31:36+0000",
+    "images": {
+      "nb_images": null,
+      "thumb_url": "data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==",
+      "small_url": "data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==",
+      "urls": [
+        "data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+      ],
+      "urls_thumb": [
+        "data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+      ],
+      "urls_large": null
+    },
+    "location": {
+      "country_id": "FR",
+      "region_id": null,
+      "region_name": null,
+      "department_id": null,
+      "department_name": null,
+      "city": "Mechernich",
+      "city_label": "Mechernich",
+      "zipcode": "53894",
+      "lat": null,
+      "lng": null
+    },
+    "owner": {
+      "store_id": null,
+      "user_id": null,
+      "type": null,
+      "name": null
+    },
+    "attributes": [
+      {
+        "key": "brand",
+        "value": "Renault",
+        "value_label": "Renault"
+      },
+      {
+        "key": "model",
+        "value": "Megane",
+        "value_label": "Megane"
+      },
+      {
+        "key": "regdate",
+        "value": "2011-12",
+        "value_label": "2011-12"
+      },
+      {
+        "key": "mileage",
+        "value": 217206,
+        "value_label": "217206"
+      },
+      {
+        "key": "fuel",
+        "value": "Diesel",
+        "value_label": "Diesel"
+      },
+      {
+        "key": "gearbox",
+        "value": "Boîte manuelle",
+        "value_label": "Boîte manuelle"
+      },
+      {
+        "key": "vehicle_type",
+        "value": "Break",
+        "value_label": "Break"
+      },
+      {
+        "key": "vehicule_color",
+        "value": "Gris",
+        "value_label": "Gris"
+      },
+      {
+        "key": "doors",
+        "value": 4,
+        "value_label": "4"
+      },
+      {
+        "key": "horse_power_din",
+        "value": 106,
+        "value_label": "106"
+      }
+    ]
+  },
+  {
+    "source": "mobilede",
+    "id": "438700695",
+    "list_id": 438700695,
+    "url": "https://www.automobile.fr/Voiture/Volkswagen-Golf-VII-Lim.-Lounge-BMT-NAVI-MFL/vhc:car,pgn:1,pgs:50,dmg:false/pg:vipcar/438700695.html",
+    "subject": "Volkswagen Golf VII Lim. Lounge BMT*NAVI*MFL*TEMPOMAT****",
+    "body": null,
+    "category_id": "cars",
+    "category_name": "Voitures",
+    "ad_type": "offer",
+    "status": "active",
+    "price": [
+      10999.0
+    ],
+    "price_cents": null,
+    "first_publication_date": null,
+    "expiration_date": null,
+    "index_date": "2025-10-12T10:31:36+0000",
+    "images": {
+      "nb_images": null,
+      "thumb_url": "data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==",
+      "small_url": "data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==",
+      "urls": [
+        "data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+      ],
+      "urls_thumb": [
+        "data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+      ],
+      "urls_large": null
+    },
+    "location": {
+      "country_id": "FR",
+      "region_id": null,
+      "region_name": null,
+      "department_id": null,
+      "department_name": null,
+      "city": "Nordhorn",
+      "city_label": "Nordhorn",
+      "zipcode": "48529",
+      "lat": null,
+      "lng": null
+    },
+    "owner": {
+      "store_id": null,
+      "user_id": null,
+      "type": null,
+      "name": null
+    },
+    "attributes": [
+      {
+        "key": "brand",
+        "value": "Volkswagen",
+        "value_label": "Volkswagen"
+      },
+      {
+        "key": "model",
+        "value": "Golf",
+        "value_label": "Golf"
+      },
+      {
+        "key": "regdate",
+        "value": "2015-11",
+        "value_label": "2015-11"
+      },
+      {
+        "key": "mileage",
+        "value": 148000,
+        "value_label": "148000"
+      },
+      {
+        "key": "fuel",
+        "value": "Diesel",
+        "value_label": "Diesel"
+      },
+      {
+        "key": "gearbox",
+        "value": "Boîte manuelle",
+        "value_label": "Boîte manuelle"
+      },
+      {
+        "key": "vehicle_type",
+        "value": "Berline",
+        "value_label": "Berline"
+      },
+      {
+        "key": "vehicule_color",
+        "value": "Noir",
+        "value_label": "Noir"
+      },
+      {
+        "key": "doors",
+        "value": 4,
+        "value_label": "4"
+      },
+      {
+        "key": "horse_power_din",
+        "value": 150,
+        "value_label": "150"
+      }
+    ]
+  },
+  {
+    "source": "mobilede",
+    "id": "438700694",
+    "list_id": 438700694,
+    "url": "https://www.automobile.fr/Voiture/Seat-Ibiza-ST-1.2-TDI-FR-Paket-Style/vhc:car,pgn:1,pgs:50,dmg:false/pg:vipcar/438700694.html",
+    "subject": "Seat Ibiza ST 1.2 TDI FR Paket Style",
+    "body": null,
+    "category_id": "cars",
+    "category_name": "Voitures",
+    "ad_type": "offer",
+    "status": "active",
+    "price": [
+      3990.0
+    ],
+    "price_cents": null,
+    "first_publication_date": null,
+    "expiration_date": null,
+    "index_date": "2025-10-12T10:31:36+0000",
+    "images": {
+      "nb_images": null,
+      "thumb_url": "data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==",
+      "small_url": "data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==",
+      "urls": [
+        "data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+      ],
+      "urls_thumb": [
+        "data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+      ],
+      "urls_large": null
+    },
+    "location": {
+      "country_id": "FR",
+      "region_id": null,
+      "region_name": null,
+      "department_id": null,
+      "department_name": null,
+      "city": "Bad Fallingbostel (OT Dorfmark)",
+      "city_label": "Bad Fallingbostel (OT Dorfmark)",
+      "zipcode": "29683",
+      "lat": null,
+      "lng": null
+    },
+    "owner": {
+      "store_id": null,
+      "user_id": null,
+      "type": null,
+      "name": null
+    },
+    "attributes": [
+      {
+        "key": "brand",
+        "value": "Seat",
+        "value_label": "Seat"
+      },
+      {
+        "key": "model",
+        "value": "Ibiza",
+        "value_label": "Ibiza"
+      },
+      {
+        "key": "regdate",
+        "value": "2012-05",
+        "value_label": "2012-05"
+      },
+      {
+        "key": "mileage",
+        "value": 182000,
+        "value_label": "182000"
+      },
+      {
+        "key": "fuel",
+        "value": "Diesel",
+        "value_label": "Diesel"
+      },
+      {
+        "key": "gearbox",
+        "value": "Boîte manuelle",
+        "value_label": "Boîte manuelle"
+      },
+      {
+        "key": "vehicle_type",
+        "value": "Break",
+        "value_label": "Break"
+      },
+      {
+        "key": "vehicule_color",
+        "value": "Argenté",
+        "value_label": "Argenté"
+      },
+      {
+        "key": "doors",
+        "value": 4,
+        "value_label": "4"
+      },
+      {
+        "key": "horse_power_din",
+        "value": 75,
+        "value_label": "75"
+      }
+    ]
+  },
+  {
+    "source": "mobilede",
+    "id": "438700679",
+    "list_id": 438700679,
+    "url": "https://www.automobile.fr/Voiture/Fiat-Sedici-1.6-16V-Emotion-NEU-T%C3%9CV-GARANTIE/vhc:car,pgn:1,pgs:50,dmg:false/pg:vipcar/438700679.html",
+    "subject": "Fiat Sedici 1.6 16V Emotion/NEU TÜV/GARANTIE!!!",
+    "body": null,
+    "category_id": "cars",
+    "category_name": "Voitures",
+    "ad_type": "offer",
+    "status": "active",
+    "price": [
+      3999.0
+    ],
+    "price_cents": null,
+    "first_publication_date": null,
+    "expiration_date": null,
+    "index_date": "2025-10-12T10:31:36+0000",
+    "images": {
+      "nb_images": null,
+      "thumb_url": "data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==",
+      "small_url": "data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==",
+      "urls": [
+        "data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+      ],
+      "urls_thumb": [
+        "data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+      ],
+      "urls_large": null
+    },
+    "location": {
+      "country_id": "FR",
+      "region_id": null,
+      "region_name": null,
+      "department_id": null,
+      "department_name": null,
+      "city": "Hadamar",
+      "city_label": "Hadamar",
+      "zipcode": "65589",
+      "lat": null,
+      "lng": null
+    },
+    "owner": {
+      "store_id": null,
+      "user_id": null,
+      "type": null,
+      "name": null
+    },
+    "attributes": [
+      {
+        "key": "brand",
+        "value": "Fiat",
+        "value_label": "Fiat"
+      },
+      {
+        "key": "model",
+        "value": "Sedici",
+        "value_label": "Sedici"
+      },
+      {
+        "key": "regdate",
+        "value": "2009-03",
+        "value_label": "2009-03"
+      },
+      {
+        "key": "mileage",
+        "value": 146000,
+        "value_label": "146000"
+      },
+      {
+        "key": "fuel",
+        "value": "Essence",
+        "value_label": "Essence"
+      },
+      {
+        "key": "gearbox",
+        "value": "Boîte manuelle",
+        "value_label": "Boîte manuelle"
+      },
+      {
+        "key": "vehicle_type",
+        "value": "Berline",
+        "value_label": "Berline"
+      },
+      {
+        "key": "vehicule_color",
+        "value": "Gris",
+        "value_label": "Gris"
+      },
+      {
+        "key": "doors",
+        "value": 4,
+        "value_label": "4"
+      },
+      {
+        "key": "horse_power_din",
+        "value": 107,
+        "value_label": "107"
+      }
+    ]
+  },
+  {
+    "source": "mobilede",
+    "id": "438095476",
+    "list_id": 438095476,
+    "url": "https://www.automobile.fr/Voiture/Porsche-Cayenne-3.0-V6-1-Hand-ACC-Pano-Kamera/vhc:car,pgn:1,pgs:50,dmg:false/pg:vipcar/438095476.html",
+    "subject": "Porsche Cayenne 3.0 V6 1- Hand ACC Pano Kamera LED AHK",
+    "body": null,
+    "category_id": "cars",
+    "category_name": "Voitures",
+    "ad_type": "offer",
+    "status": "active",
+    "price": [
+      29500.0
+    ],
+    "price_cents": null,
+    "first_publication_date": null,
+    "expiration_date": null,
+    "index_date": "2025-10-12T10:31:36+0000",
+    "images": {
+      "nb_images": null,
+      "thumb_url": "data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==",
+      "small_url": "data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==",
+      "urls": [
+        "data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+      ],
+      "urls_thumb": [
+        "data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+      ],
+      "urls_large": null
+    },
+    "location": {
+      "country_id": "FR",
+      "region_id": null,
+      "region_name": null,
+      "department_id": null,
+      "department_name": null,
+      "city": "München",
+      "city_label": "München",
+      "zipcode": "80995",
+      "lat": null,
+      "lng": null
+    },
+    "owner": {
+      "store_id": null,
+      "user_id": null,
+      "type": null,
+      "name": null
+    },
+    "attributes": [
+      {
+        "key": "brand",
+        "value": "Porsche",
+        "value_label": "Porsche"
+      },
+      {
+        "key": "model",
+        "value": "Cayenne",
+        "value_label": "Cayenne"
+      },
+      {
+        "key": "regdate",
+        "value": "2019-04",
+        "value_label": "2019-04"
+      },
+      {
+        "key": "mileage",
+        "value": 189000,
+        "value_label": "189000"
+      },
+      {
+        "key": "fuel",
+        "value": "Essence",
+        "value_label": "Essence"
+      },
+      {
+        "key": "gearbox",
+        "value": "Boîte automatique",
+        "value_label": "Boîte automatique"
+      },
+      {
+        "key": "vehicule_color",
+        "value": "Blanc",
+        "value_label": "Blanc"
+      },
+      {
+        "key": "doors",
+        "value": 4,
+        "value_label": "4"
+      },
+      {
+        "key": "horse_power_din",
+        "value": 340,
+        "value_label": "340"
+      }
+    ]
+  },
+  {
+    "source": "mobilede",
+    "id": "438587129",
+    "list_id": 438587129,
+    "url": "https://www.automobile.fr/Voiture/Ford-Fiesta-Trend-AUTOMATIK-KLIMA-T%C3%9CV-NEU/vhc:car,pgn:1,pgs:50,dmg:false/pg:vipcar/438587129.html",
+    "subject": "Ford Fiesta Trend / AUTOMATIK / KLIMA / TÜV NEU",
+    "body": null,
+    "category_id": "cars",
+    "category_name": "Voitures",
+    "ad_type": "offer",
+    "status": "active",
+    "price": [
+      5399.0
+    ],
+    "price_cents": null,
+    "first_publication_date": null,
+    "expiration_date": null,
+    "index_date": "2025-10-12T10:31:36+0000",
+    "images": {
+      "nb_images": null,
+      "thumb_url": "data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==",
+      "small_url": "data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==",
+      "urls": [
+        "data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+      ],
+      "urls_thumb": [
+        "data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+      ],
+      "urls_large": null
+    },
+    "location": {
+      "country_id": "FR",
+      "region_id": null,
+      "region_name": null,
+      "department_id": null,
+      "department_name": null,
+      "city": "Hagen",
+      "city_label": "Hagen",
+      "zipcode": "58097",
+      "lat": null,
+      "lng": null
+    },
+    "owner": {
+      "store_id": null,
+      "user_id": null,
+      "type": null,
+      "name": null
+    },
+    "attributes": [
+      {
+        "key": "brand",
+        "value": "Ford",
+        "value_label": "Ford"
+      },
+      {
+        "key": "model",
+        "value": "Fiesta",
+        "value_label": "Fiesta"
+      },
+      {
+        "key": "regdate",
+        "value": "2011-10",
+        "value_label": "2011-10"
+      },
+      {
+        "key": "mileage",
+        "value": 147000,
+        "value_label": "147000"
+      },
+      {
+        "key": "fuel",
+        "value": "Essence",
+        "value_label": "Essence"
+      },
+      {
+        "key": "gearbox",
+        "value": "Boîte automatique",
+        "value_label": "Boîte automatique"
+      },
+      {
+        "key": "vehicle_type",
+        "value": "Berline",
+        "value_label": "Berline"
+      },
+      {
+        "key": "vehicule_color",
+        "value": "Bleu",
+        "value_label": "Bleu"
+      },
+      {
+        "key": "doors",
+        "value": 4,
+        "value_label": "4"
+      },
+      {
+        "key": "horse_power_din",
+        "value": 97,
+        "value_label": "97"
+      }
+    ]
+  },
+  {
+    "source": "mobilede",
+    "id": "438700626",
+    "list_id": 438700626,
+    "url": "https://www.automobile.fr/Voiture/Volkswagen-Crafter-2.0-TDI-Lang-1-HAND-NAVI/vhc:car,pgn:1,pgs:50,dmg:false/pg:vipcar/438700626.html",
+    "subject": "Volkswagen Crafter 2.0 TDI Lang *1 HAND*NAVI*140 PS*TÜV NEU",
+    "body": null,
+    "category_id": "cars",
+    "category_name": "Voitures",
+    "ad_type": "offer",
+    "status": "active",
+    "price": [
+      19900.0
+    ],
+    "price_cents": null,
+    "first_publication_date": null,
+    "expiration_date": null,
+    "index_date": "2025-10-12T10:31:36+0000",
+    "images": {
+      "nb_images": null,
+      "thumb_url": null,
+      "small_url": null,
+      "urls": null,
+      "urls_thumb": null,
+      "urls_large": null
+    },
+    "location": {
+      "country_id": "FR",
+      "region_id": null,
+      "region_name": null,
+      "department_id": null,
+      "department_name": null,
+      "city": "Windhausen",
+      "city_label": "Windhausen",
+      "zipcode": "37539",
+      "lat": null,
+      "lng": null
+    },
+    "owner": {
+      "store_id": null,
+      "user_id": null,
+      "type": null,
+      "name": null
+    },
+    "attributes": [
+      {
+        "key": "brand",
+        "value": "Volkswagen",
+        "value_label": "Volkswagen"
+      },
+      {
+        "key": "model",
+        "value": "Crafter",
+        "value_label": "Crafter"
+      },
+      {
+        "key": "regdate",
+        "value": "2021-05",
+        "value_label": "2021-05"
+      },
+      {
+        "key": "mileage",
+        "value": 147000,
+        "value_label": "147000"
+      },
+      {
+        "key": "fuel",
+        "value": "Diesel",
+        "value_label": "Diesel"
+      },
+      {
+        "key": "gearbox",
+        "value": "Boîte manuelle",
+        "value_label": "Boîte manuelle"
+      },
+      {
+        "key": "vehicule_color",
+        "value": "Bleu",
+        "value_label": "Bleu"
+      },
+      {
+        "key": "doors",
+        "value": 4,
+        "value_label": "4"
+      },
+      {
+        "key": "horse_power_din",
+        "value": 140,
+        "value_label": "140"
+      }
+    ]
+  },
+  {
+    "source": "mobilede",
+    "id": "438199989",
+    "list_id": 438199989,
+    "url": "https://www.automobile.fr/Voiture/Volkswagen-Golf-VI-Comfortline-AUTOMATIK/vhc:car,pgn:1,pgs:50,dmg:false/pg:vipcar/438199989.html",
+    "subject": "Volkswagen Golf VI Comfortline / AUTOMATIK / KLIMA /TÜV NEU",
+    "body": null,
+    "category_id": "cars",
+    "category_name": "Voitures",
+    "ad_type": "offer",
+    "status": "active",
+    "price": [
+      5999.0
+    ],
+    "price_cents": null,
+    "first_publication_date": null,
+    "expiration_date": null,
+    "index_date": "2025-10-12T10:31:36+0000",
+    "images": {
+      "nb_images": null,
+      "thumb_url": "data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==",
+      "small_url": "data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==",
+      "urls": [
+        "data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+      ],
+      "urls_thumb": [
+        "data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+      ],
+      "urls_large": null
+    },
+    "location": {
+      "country_id": "FR",
+      "region_id": null,
+      "region_name": null,
+      "department_id": null,
+      "department_name": null,
+      "city": "Hagen",
+      "city_label": "Hagen",
+      "zipcode": "58097",
+      "lat": null,
+      "lng": null
+    },
+    "owner": {
+      "store_id": null,
+      "user_id": null,
+      "type": null,
+      "name": null
+    },
+    "attributes": [
+      {
+        "key": "brand",
+        "value": "Volkswagen",
+        "value_label": "Volkswagen"
+      },
+      {
+        "key": "model",
+        "value": "Golf",
+        "value_label": "Golf"
+      },
+      {
+        "key": "regdate",
+        "value": "2009-06",
+        "value_label": "2009-06"
+      },
+      {
+        "key": "mileage",
+        "value": 142000,
+        "value_label": "142000"
+      },
+      {
+        "key": "fuel",
+        "value": "Essence",
+        "value_label": "Essence"
+      },
+      {
+        "key": "gearbox",
+        "value": "Boîte automatique",
+        "value_label": "Boîte automatique"
+      },
+      {
+        "key": "vehicle_type",
+        "value": "Berline",
+        "value_label": "Berline"
+      },
+      {
+        "key": "vehicule_color",
+        "value": "Noir",
+        "value_label": "Noir"
+      },
+      {
+        "key": "doors",
+        "value": 4,
+        "value_label": "4"
+      },
+      {
+        "key": "horse_power_din",
+        "value": 160,
+        "value_label": "160"
+      }
+    ]
+  },
+  {
+    "source": "mobilede",
+    "id": "438700590",
+    "list_id": 438700590,
+    "url": "https://www.automobile.fr/Voiture/Chevrolet-Cruze-1.6-4-porte-LT/vhc:car,pgn:1,pgs:50,dmg:false/pg:vipcar/438700590.html",
+    "subject": "Chevrolet Cruze 1.6 4 porte LT",
+    "body": null,
+    "category_id": "cars",
+    "category_name": "Voitures",
+    "ad_type": "offer",
+    "status": "active",
+    "price": [
+      5900.0
+    ],
+    "price_cents": null,
+    "first_publication_date": null,
+    "expiration_date": null,
+    "index_date": "2025-10-12T10:31:36+0000",
+    "images": {
+      "nb_images": null,
+      "thumb_url": "data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==",
+      "small_url": "data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==",
+      "urls": [
+        "data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+      ],
+      "urls_thumb": [
+        "data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+      ],
+      "urls_large": null
+    },
+    "location": {
+      "country_id": "FR",
+      "region_id": null,
+      "region_name": null,
+      "department_id": null,
+      "department_name": null,
+      "city": "moncalieri",
+      "city_label": "moncalieri",
+      "zipcode": "10024",
+      "lat": null,
+      "lng": null
+    },
+    "owner": {
+      "store_id": null,
+      "user_id": null,
+      "type": null,
+      "name": null
+    },
+    "attributes": [
+      {
+        "key": "brand",
+        "value": "Chevrolet",
+        "value_label": "Chevrolet"
+      },
+      {
+        "key": "model",
+        "value": "Cruze",
+        "value_label": "Cruze"
+      },
+      {
+        "key": "regdate",
+        "value": "2012-07",
+        "value_label": "2012-07"
+      },
+      {
+        "key": "mileage",
+        "value": 128116,
+        "value_label": "128116"
+      },
+      {
+        "key": "fuel",
+        "value": "Essence",
+        "value_label": "Essence"
+      },
+      {
+        "key": "gearbox",
+        "value": "Boîte manuelle",
+        "value_label": "Boîte manuelle"
+      },
+      {
+        "key": "vehicle_type",
+        "value": "Berline",
+        "value_label": "Berline"
+      },
+      {
+        "key": "vehicule_color",
+        "value": "Blanc",
+        "value_label": "Blanc"
+      },
+      {
+        "key": "doors",
+        "value": 4,
+        "value_label": "4"
+      },
+      {
+        "key": "horse_power_din",
+        "value": 124,
+        "value_label": "124"
+      }
+    ]
+  },
+  {
+    "source": "mobilede",
+    "id": "438700589",
+    "list_id": 438700589,
+    "url": "https://www.automobile.fr/Voiture/Ford-C-Max-2%C2%AA-serie-1.5-TDCi-120CV-Start-Stop/vhc:car,pgn:1,pgs:50,dmg:false/pg:vipcar/438700589.html",
+    "subject": "Ford C-Max 2ª serie 1.5 TDCi 120CV Start&Stop Ti",
+    "body": null,
+    "category_id": "cars",
+    "category_name": "Voitures",
+    "ad_type": "offer",
+    "status": "active",
+    "price": [
+      8900.0
+    ],
+    "price_cents": null,
+    "first_publication_date": null,
+    "expiration_date": null,
+    "index_date": "2025-10-12T10:31:36+0000",
+    "images": {
+      "nb_images": null,
+      "thumb_url": "data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==",
+      "small_url": "data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==",
+      "urls": [
+        "data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+      ],
+      "urls_thumb": [
+        "data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+      ],
+      "urls_large": null
+    },
+    "location": {
+      "country_id": "FR",
+      "region_id": null,
+      "region_name": null,
+      "department_id": null,
+      "department_name": null,
+      "city": "moncalieri",
+      "city_label": "moncalieri",
+      "zipcode": "10024",
+      "lat": null,
+      "lng": null
+    },
+    "owner": {
+      "store_id": null,
+      "user_id": null,
+      "type": null,
+      "name": null
+    },
+    "attributes": [
+      {
+        "key": "brand",
+        "value": "Ford",
+        "value_label": "Ford"
+      },
+      {
+        "key": "model",
+        "value": "C-Max",
+        "value_label": "C-Max"
+      },
+      {
+        "key": "regdate",
+        "value": "2016-10",
+        "value_label": "2016-10"
+      },
+      {
+        "key": "mileage",
+        "value": 113547,
+        "value_label": "113547"
+      },
+      {
+        "key": "fuel",
+        "value": "Diesel",
+        "value_label": "Diesel"
+      },
+      {
+        "key": "gearbox",
+        "value": "Boîte manuelle",
+        "value_label": "Boîte manuelle"
+      },
+      {
+        "key": "vehicule_color",
+        "value": "Bleu",
+        "value_label": "Bleu"
+      },
+      {
+        "key": "doors",
+        "value": 4,
+        "value_label": "4"
+      },
+      {
+        "key": "horse_power_din",
+        "value": 120,
+        "value_label": "120"
+      }
+    ]
+  },
+  {
+    "source": "mobilede",
+    "id": "438700588",
+    "list_id": 438700588,
+    "url": "https://www.automobile.fr/Voiture/Peugeot-2008-1.5-bluehdi-GT-s-s-130cv-eat8/vhc:car,pgn:1,pgs:50,dmg:false/pg:vipcar/438700588.html",
+    "subject": "Peugeot 2008 1.5 bluehdi GT s&s 130cv eat8",
+    "body": null,
+    "category_id": "cars",
+    "category_name": "Voitures",
+    "ad_type": "offer",
+    "status": "active",
+    "price": [
+      25555.0
+    ],
+    "price_cents": null,
+    "first_publication_date": null,
+    "expiration_date": null,
+    "index_date": "2025-10-12T10:31:36+0000",
+    "images": {
+      "nb_images": null,
+      "thumb_url": null,
+      "small_url": null,
+      "urls": null,
+      "urls_thumb": null,
+      "urls_large": null
+    },
+    "location": {
+      "country_id": "FR",
+      "region_id": null,
+      "region_name": null,
+      "department_id": null,
+      "department_name": null,
+      "city": "Vicenza",
+      "city_label": "Vicenza",
+      "zipcode": "36100",
+      "lat": null,
+      "lng": null
+    },
+    "owner": {
+      "store_id": null,
+      "user_id": null,
+      "type": null,
+      "name": null
+    },
+    "attributes": [
+      {
+        "key": "brand",
+        "value": "Peugeot",
+        "value_label": "Peugeot"
+      },
+      {
+        "key": "model",
+        "value": "2008",
+        "value_label": "2008"
+      },
+      {
+        "key": "regdate",
+        "value": "2024-01",
+        "value_label": "2024-01"
+      },
+      {
+        "key": "mileage",
+        "value": 27763,
+        "value_label": "27763"
+      },
+      {
+        "key": "fuel",
+        "value": "Diesel",
+        "value_label": "Diesel"
+      },
+      {
+        "key": "gearbox",
+        "value": "Boîte automatique",
+        "value_label": "Boîte automatique"
+      },
+      {
+        "key": "vehicule_color",
+        "value": "Gris",
+        "value_label": "Gris"
+      },
+      {
+        "key": "doors",
+        "value": 4,
+        "value_label": "4"
+      },
+      {
+        "key": "horse_power_din",
+        "value": 131,
+        "value_label": "131"
+      }
+    ]
+  },
+  {
+    "source": "mobilede",
+    "id": "438700584",
+    "list_id": 438700584,
+    "url": "https://www.automobile.fr/Voiture/Kia-KIA-Xceed-1.6-gdi-phev-High-Tech-141cv/vhc:car,pgn:1,pgs:50,dmg:false/pg:vipcar/438700584.html",
+    "subject": "Kia KIA Xceed 1.6 gdi phev High Tech 141cv dct",
+    "body": null,
+    "category_id": "cars",
+    "category_name": "Voitures",
+    "ad_type": "offer",
+    "status": "active",
+    "price": [
+      21755.0
+    ],
+    "price_cents": null,
+    "first_publication_date": null,
+    "expiration_date": null,
+    "index_date": "2025-10-12T10:31:36+0000",
+    "images": {
+      "nb_images": null,
+      "thumb_url": null,
+      "small_url": null,
+      "urls": null,
+      "urls_thumb": null,
+      "urls_large": null
+    },
+    "location": {
+      "country_id": "FR",
+      "region_id": null,
+      "region_name": null,
+      "department_id": null,
+      "department_name": null,
+      "city": "Vicenza",
+      "city_label": "Vicenza",
+      "zipcode": "36100",
+      "lat": null,
+      "lng": null
+    },
+    "owner": {
+      "store_id": null,
+      "user_id": null,
+      "type": null,
+      "name": null
+    },
+    "attributes": [
+      {
+        "key": "brand",
+        "value": "Kia",
+        "value_label": "Kia"
+      },
+      {
+        "key": "model",
+        "value": "KIA",
+        "value_label": "KIA"
+      },
+      {
+        "key": "regdate",
+        "value": "2022-09",
+        "value_label": "2022-09"
+      },
+      {
+        "key": "mileage",
+        "value": 48600,
+        "value_label": "48600"
+      },
+      {
+        "key": "fuel",
+        "value": "Hybride (essence/électrique)",
+        "value_label": "Hybride (essence/électrique)"
+      },
+      {
+        "key": "gearbox",
+        "value": "Boîte automatique",
+        "value_label": "Boîte automatique"
+      },
+      {
+        "key": "vehicule_color",
+        "value": "Noir",
+        "value_label": "Noir"
+      },
+      {
+        "key": "doors",
+        "value": 4,
+        "value_label": "4"
+      },
+      {
+        "key": "horse_power_din",
+        "value": 141,
+        "value_label": "141"
+      }
+    ]
+  },
+  {
+    "source": "mobilede",
+    "id": "438700581",
+    "list_id": 438700581,
+    "url": "https://www.automobile.fr/Voiture/Volkswagen-Golf-1.0-etsi-evo-Life-110cv-dsg/vhc:car,pgn:1,pgs:50,dmg:false/pg:vipcar/438700581.html",
+    "subject": "Volkswagen Golf 1.0 etsi evo Life 110cv dsg",
+    "body": null,
+    "category_id": "cars",
+    "category_name": "Voitures",
+    "ad_type": "offer",
+    "status": "active",
+    "price": [
+      22230.0
+    ],
+    "price_cents": null,
+    "first_publication_date": null,
+    "expiration_date": null,
+    "index_date": "2025-10-12T10:31:36+0000",
+    "images": {
+      "nb_images": null,
+      "thumb_url": null,
+      "small_url": null,
+      "urls": null,
+      "urls_thumb": null,
+      "urls_large": null
+    },
+    "location": {
+      "country_id": "FR",
+      "region_id": null,
+      "region_name": null,
+      "department_id": null,
+      "department_name": null,
+      "city": "Vicenza",
+      "city_label": "Vicenza",
+      "zipcode": "36100",
+      "lat": null,
+      "lng": null
+    },
+    "owner": {
+      "store_id": null,
+      "user_id": null,
+      "type": null,
+      "name": null
+    },
+    "attributes": [
+      {
+        "key": "brand",
+        "value": "Volkswagen",
+        "value_label": "Volkswagen"
+      },
+      {
+        "key": "model",
+        "value": "Golf",
+        "value_label": "Golf"
+      },
+      {
+        "key": "regdate",
+        "value": "2024-03",
+        "value_label": "2024-03"
+      },
+      {
+        "key": "mileage",
+        "value": 14949,
+        "value_label": "14949"
+      },
+      {
+        "key": "fuel",
+        "value": "Hybride (essence/électrique)",
+        "value_label": "Hybride (essence/électrique)"
+      },
+      {
+        "key": "gearbox",
+        "value": "Boîte automatique",
+        "value_label": "Boîte automatique"
+      },
+      {
+        "key": "vehicle_type",
+        "value": "Berline",
+        "value_label": "Berline"
+      },
+      {
+        "key": "vehicule_color",
+        "value": "Bleu",
+        "value_label": "Bleu"
+      },
+      {
+        "key": "doors",
+        "value": 4,
+        "value_label": "4"
+      },
+      {
+        "key": "horse_power_din",
+        "value": 110,
+        "value_label": "110"
+      }
+    ]
+  },
+  {
+    "source": "mobilede",
+    "id": "438700542",
+    "list_id": 438700542,
+    "url": "https://www.automobile.fr/Voiture/Porsche-Macan-2.0-265cv-pdk/vhc:car,pgn:1,pgs:50,dmg:false/pg:vipcar/438700542.html",
+    "subject": "Porsche Macan 2.0 265cv pdk",
+    "body": null,
+    "category_id": "cars",
+    "category_name": "Voitures",
+    "ad_type": "offer",
+    "status": "active",
+    "price": [
+      65000.0
+    ],
+    "price_cents": null,
+    "first_publication_date": null,
+    "expiration_date": null,
+    "index_date": "2025-10-12T10:31:36+0000",
+    "images": {
+      "nb_images": null,
+      "thumb_url": null,
+      "small_url": null,
+      "urls": null,
+      "urls_thumb": null,
+      "urls_large": null
+    },
+    "location": {
+      "country_id": "FR",
+      "region_id": null,
+      "region_name": null,
+      "department_id": null,
+      "department_name": null,
+      "city": "Torino",
+      "city_label": "Torino",
+      "zipcode": "10142",
+      "lat": null,
+      "lng": null
+    },
+    "owner": {
+      "store_id": null,
+      "user_id": null,
+      "type": null,
+      "name": null
+    },
+    "attributes": [
+      {
+        "key": "brand",
+        "value": "Porsche",
+        "value_label": "Porsche"
+      },
+      {
+        "key": "model",
+        "value": "Macan",
+        "value_label": "Macan"
+      },
+      {
+        "key": "regdate",
+        "value": "2022-01",
+        "value_label": "2022-01"
+      },
+      {
+        "key": "mileage",
+        "value": 43501,
+        "value_label": "43501"
+      },
+      {
+        "key": "fuel",
+        "value": "Essence",
+        "value_label": "Essence"
+      },
+      {
+        "key": "gearbox",
+        "value": "Boîte automatique",
+        "value_label": "Boîte automatique"
+      },
+      {
+        "key": "vehicule_color",
+        "value": "Gris",
+        "value_label": "Gris"
+      },
+      {
+        "key": "doors",
+        "value": 4,
+        "value_label": "4"
+      },
+      {
+        "key": "horse_power_din",
+        "value": 265,
+        "value_label": "265"
+      }
+    ]
+  },
+  {
+    "source": "mobilede",
+    "id": "438700541",
+    "list_id": 438700541,
+    "url": "https://www.automobile.fr/Voiture/Porsche-Taycan-cross-turismo-4-5p.ti/vhc:car,pgn:1,pgs:50,dmg:false/pg:vipcar/438700541.html",
+    "subject": "Porsche Taycan cross turismo 4 5p.ti",
+    "body": null,
+    "category_id": "cars",
+    "category_name": "Voitures",
+    "ad_type": "offer",
+    "status": "active",
+    "price": [
+      76000.0
+    ],
+    "price_cents": null,
+    "first_publication_date": null,
+    "expiration_date": null,
+    "index_date": "2025-10-12T10:31:36+0000",
+    "images": {
+      "nb_images": null,
+      "thumb_url": null,
+      "small_url": null,
+      "urls": null,
+      "urls_thumb": null,
+      "urls_large": null
+    },
+    "location": {
+      "country_id": "FR",
+      "region_id": null,
+      "region_name": null,
+      "department_id": null,
+      "department_name": null,
+      "city": "Torino",
+      "city_label": "Torino",
+      "zipcode": "10142",
+      "lat": null,
+      "lng": null
+    },
+    "owner": {
+      "store_id": null,
+      "user_id": null,
+      "type": null,
+      "name": null
+    },
+    "attributes": [
+      {
+        "key": "brand",
+        "value": "Porsche",
+        "value_label": "Porsche"
+      },
+      {
+        "key": "model",
+        "value": "Taycan",
+        "value_label": "Taycan"
+      },
+      {
+        "key": "regdate",
+        "value": "2023-08",
+        "value_label": "2023-08"
+      },
+      {
+        "key": "mileage",
+        "value": 36750,
+        "value_label": "36750"
+      },
+      {
+        "key": "fuel",
+        "value": "Électrique",
+        "value_label": "Électrique"
+      },
+      {
+        "key": "gearbox",
+        "value": "Boîte automatique",
+        "value_label": "Boîte automatique"
+      },
+      {
+        "key": "vehicle_type",
+        "value": "Break",
+        "value_label": "Break"
+      },
+      {
+        "key": "vehicule_color",
+        "value": "Gris",
+        "value_label": "Gris"
+      },
+      {
+        "key": "doors",
+        "value": 4,
+        "value_label": "4"
+      },
+      {
+        "key": "horse_power_din",
+        "value": 190,
+        "value_label": "190"
+      }
+    ]
+  },
+  {
+    "source": "mobilede",
+    "id": "438700540",
+    "list_id": 438700540,
+    "url": "https://www.automobile.fr/Voiture/Audi-SQ8-s4.0-tfsi-sport-attitude-quattro/vhc:car,pgn:1,pgs:50,dmg:false/pg:vipcar/438700540.html",
+    "subject": "Audi SQ8 s4.0 tfsi sport attitude quattro tiptro",
+    "body": null,
+    "category_id": "cars",
+    "category_name": "Voitures",
+    "ad_type": "offer",
+    "status": "active",
+    "price": [
+      60500.0
+    ],
+    "price_cents": null,
+    "first_publication_date": null,
+    "expiration_date": null,
+    "index_date": "2025-10-12T10:31:36+0000",
+    "images": {
+      "nb_images": null,
+      "thumb_url": null,
+      "small_url": null,
+      "urls": null,
+      "urls_thumb": null,
+      "urls_large": null
+    },
+    "location": {
+      "country_id": "FR",
+      "region_id": null,
+      "region_name": null,
+      "department_id": null,
+      "department_name": null,
+      "city": "Torino",
+      "city_label": "Torino",
+      "zipcode": "10142",
+      "lat": null,
+      "lng": null
+    },
+    "owner": {
+      "store_id": null,
+      "user_id": null,
+      "type": null,
+      "name": null
+    },
+    "attributes": [
+      {
+        "key": "brand",
+        "value": "Audi",
+        "value_label": "Audi"
+      },
+      {
+        "key": "model",
+        "value": "SQ8",
+        "value_label": "SQ8"
+      },
+      {
+        "key": "regdate",
+        "value": "2022-04",
+        "value_label": "2022-04"
+      },
+      {
+        "key": "mileage",
+        "value": 71000,
+        "value_label": "71000"
+      },
+      {
+        "key": "fuel",
+        "value": "Essence",
+        "value_label": "Essence"
+      },
+      {
+        "key": "gearbox",
+        "value": "Boîte automatique",
+        "value_label": "Boîte automatique"
+      },
+      {
+        "key": "vehicule_color",
+        "value": "Bleu",
+        "value_label": "Bleu"
+      },
+      {
+        "key": "doors",
+        "value": 4,
+        "value_label": "4"
+      },
+      {
+        "key": "horse_power_din",
+        "value": 507,
+        "value_label": "507"
+      }
+    ]
+  }
+]

@@ -3,7 +3,7 @@ from __future__ import annotations
 import json
 import time
 import logging
-from typing import Any, Dict, List, Optional
+from typing import Any, Dict, List, Optional, Set
 import configparser
 from datetime import datetime, timezone
 
@@ -16,7 +16,7 @@ logger = logging.getLogger(__name__)
 logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(message)s")
 
 
-class ScraperCars:
+class ScraperLBC:
     """Scraper for leboncoin finder/search endpoint.
 
     Constructor arguments:
@@ -43,6 +43,8 @@ class ScraperCars:
         impersonate: Optional[str] = None,
         use_session: bool = True,
         referer: Optional[str] = None,
+        existing_ids: Optional[Set[str]] = None,
+        stop_on_known: bool = False,
     ) -> None:
         self.start_date = start_date
         self.end_date = end_date
@@ -127,6 +129,9 @@ class ScraperCars:
                     self._session.cookies.update(self.cookies)
                 except Exception:
                     pass
+        # duplicate stop config
+        self._existing_ids = set(existing_ids) if existing_ids else None
+        self._stop_on_known = bool(stop_on_known)
 
     def _load_ini(self, path: str) -> None:
         cfg = configparser.ConfigParser()
@@ -343,22 +348,29 @@ class ScraperCars:
                 logger.info("No more hits returned; stopping. Offset=%s", offset)
                 break
 
-            # Filter by date_limit when provided; stop when encountering older ads
-            if self.date_limit_dt is not None:
-                page_kept: List[Dict[str, Any]] = []
-                for ad in hits:
+            # Unified filter: enforce date_limit and stop_on_known during page scan
+            page_kept: List[Dict[str, Any]] = []
+            for ad in hits:
+                # if configured, stop when a known id is reached
+                if self._stop_on_known and self._existing_ids is not None:
+                    # determine ad key
+                    ad_key = ad.get("id") or ad.get("list_id") or ad.get("unique_key")
+                    if ad_key is not None and str(ad_key) in self._existing_ids:
+                        older_reached = True
+                        break
+                # enforce date cutoff if any
+                if self.date_limit_dt is not None:
                     ad_dt = self._extract_ad_datetime(ad)
                     if ad_dt is None:
-                        # skip unknown date to avoid accidental early stop
+                        # can't evaluate: skip add but keep scanning in case newer items exist in page
                         continue
-                    if ad_dt >= self.date_limit_dt:
-                        page_kept.append(ad)
-                    else:
+                    if ad_dt < self.date_limit_dt:
                         older_reached = True
-                        # since sorted desc by time, remaining will be older as well
-                collected.extend(page_kept)
-            else:
-                collected.extend(hits)
+                        break
+                page_kept.append(ad)
+
+            # add what we kept from this page
+            collected.extend(page_kept)
 
             # advance offset
             offset += len(hits)
@@ -369,7 +381,7 @@ class ScraperCars:
             print("Sleeping 5s to be nice to server...\n got ", len(collected), " items so far.")
             time.sleep(5)  # be nice
 
-        # de-duplicate by the API ad id (fallback to list_id if id missing)
+    # de-duplicate by the API ad id (fallback to list_id if id missing)
         collected = self.deduplicate_rows(collected, key_field="id")
 
         # trim to max_results after de-duplication
@@ -386,7 +398,7 @@ class ScraperCars:
 
 if __name__ == "__main__":
     # quick demo when run directly (will not execute network call by default)
-    print("ScraperCars module. Use Test.py to run an example.")
+    print("ScraperLBC module. Use Test.py to run an example.")
 
     
     
