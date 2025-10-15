@@ -629,7 +629,7 @@ def run_collect(
                 "finished_at": datetime.now(timezone.utc).isoformat(),
                 "attempts": attempt,
                 "success": True,
-                "count_scraped": len(ads_all),
+                "count_scraped": len(ads),
                 "stats": {**stats, "source_counts": source_counts},
             }
             supa.table(table_runs).insert(run_doc_lbc).execute()
@@ -705,7 +705,7 @@ def run_collect(
                 "finished_at": datetime.now(timezone.utc).isoformat(),
                 "attempts": attempt,
                 "success": True,
-                "count_scraped": len(ads_all),
+                "count_scraped": len(ads),
                 "stats": {**stats, "source_counts": source_counts},
             }
             
