@@ -170,6 +170,98 @@ def _parse_dt(s: Optional[str]) -> Optional[str]:
     return None
 
 
+def _parse_regdate(s: Optional[str]) -> Optional[str]:
+    """Parse registration date into ISO format (YYYY-MM-DD).
+    
+    Handles various formats:
+    - "2020" (LBC format) -> "2020-01-01"
+    - "2020-01" (Mobile.de format) -> "2020-01-01"
+    - "2020-01-15" -> "2020-01-15"
+    - "01/2020" or "2020/01" -> "2020-01-01"
+    - "15/01/2020" -> "2020-01-15"
+    - "2020-01-15 00:00:00" -> "2020-01-15"
+    """
+    if not s:
+        return None
+    
+    s = str(s).strip()
+    if not s:
+        return None
+    
+    # Try full ISO date first (YYYY-MM-DD)
+    try:
+        if len(s) == 10 and s[4] == '-' and s[7] == '-':
+            # Already in YYYY-MM-DD format, validate it
+            datetime.strptime(s, "%Y-%m-%d")
+            return s
+    except Exception:
+        pass
+    
+    # Try YYYY-MM format (Mobile.de) - default to first day of month
+    try:
+        if len(s) == 7 and s[4] == '-':
+            # YYYY-MM format
+            dt = datetime.strptime(s, "%Y-%m")
+            return dt.strftime("%Y-%m-01")
+    except Exception:
+        pass
+    
+    # Try datetime formats and extract date
+    datetime_fmts = [
+        "%Y-%m-%d %H:%M:%S",
+        "%Y-%m-%dT%H:%M:%S",
+        "%Y-%m-%d %H:%M:%S%z",
+        "%Y-%m-%dT%H:%M:%S%z",
+    ]
+    for fmt in datetime_fmts:
+        try:
+            dt = datetime.strptime(s, fmt)
+            return dt.strftime("%Y-%m-%d")
+        except Exception:
+            continue
+    
+    # Try date-only formats
+    date_fmts = [
+        "%Y-%m-%d",
+        "%d/%m/%Y",
+        "%m/%d/%Y",
+        "%Y/%m/%d",
+    ]
+    for fmt in date_fmts:
+        try:
+            dt = datetime.strptime(s, fmt)
+            return dt.strftime("%Y-%m-%d")
+        except Exception:
+            continue
+    
+    # Try year-month formats with slash (MM/YYYY or YYYY/MM)
+    if '/' in s:
+        parts = s.split('/')
+        if len(parts) == 2:
+            # Could be MM/YYYY or YYYY/MM
+            try:
+                if len(parts[0]) == 4:  # YYYY/MM
+                    year, month = int(parts[0]), int(parts[1])
+                else:  # MM/YYYY
+                    month, year = int(parts[0]), int(parts[1])
+                if 1 <= month <= 12 and 1900 <= year <= 2100:
+                    return f"{year:04d}-{month:02d}-01"
+            except Exception:
+                pass
+    
+    # Try just year (LBC format) - default to January 1st
+    try:
+        if len(s) == 4:  # Likely just a year
+            year = int(s)
+            if 1900 <= year <= 2100:
+                return f"{year:04d}-01-01"
+    except Exception:
+        pass
+    
+    # Could not parse
+    return None
+
+
 def _attr(attrs: List[Dict[str, Any]], key: str) -> Optional[Dict[str, Any]]:
     if not isinstance(attrs, list):
         return None
@@ -240,7 +332,7 @@ def map_lbc_to_row(ad: Dict[str, Any]) -> Dict[str, Any]:
         # attributes main
         "car_brand": _attr_val_label(attrs, "brand") or _attr_val_label(attrs, "u_car_brand"),
         "car_model": _attr_val_label(attrs, "model") or _attr_val_label(attrs, "u_car_model"),
-        "regdate": _attr_val_label(attrs, "regdate"),
+        "regdate": _parse_regdate(_attr_val_label(attrs, "regdate")),
         "mileage": _try_int(_attr_val_label(attrs, "mileage")),
         "fuel_label": _attr_val_label(attrs, "fuel"),
         "gearbox_label": _attr_val_label(attrs, "gearbox"),
@@ -356,7 +448,7 @@ def map_mobile_to_row(ad: Dict[str, Any]) -> Dict[str, Any]:
         # Vehicle details
         "car_brand": car_brand,
         "car_model": car_model,
-        "regdate": regdate,
+        "regdate": _parse_regdate(regdate),
         "mileage": _try_int(mileage),
         "fuel_label": fuel_label,
         "gearbox_label": gearbox_label,

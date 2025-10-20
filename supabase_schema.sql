@@ -41,7 +41,7 @@ create table if not exists public.ads (
   -- attributes main
   car_brand text,
   car_model text,
-  regdate text,
+  regdate date,
   mileage int,
   fuel_label text,
   gearbox_label text,
