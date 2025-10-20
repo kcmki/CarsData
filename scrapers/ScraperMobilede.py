@@ -55,7 +55,7 @@ class ScraperMobilede:
         self.page_size = max(1, int(page_size))
         self.max_results = int(max_results or 0)
         self.timeout = timeout
-        self.impersonate = impersonate or "chrome131"
+        self.impersonate = impersonate or "safari_ios"
         self._existing_ids = set(existing_ids) if existing_ids else None
         self._stop_on_known = bool(stop_on_known)
         self.base_url_template = base_url_template or self.BASE_URL
@@ -331,7 +331,6 @@ class ScraperMobilede:
             return None
 
         url = self._abs_url(a.get("href", ""))
-        logging.info(url)
         # Extract vehicle ID
         list_id = None
         if url:
@@ -467,7 +466,6 @@ class ScraperMobilede:
         color_doors = {}
 
         # --- BUILD FINAL AD DICT ---
-        logging.info(f"Parsed ad: id={list_id}, url={url}, subject={subject}, price={price}, reg={reg}, km={km}, kw={kw}, ch={ch}, city={city}, zipcode={zipcode}, brand={car_brand}, model={car_model}, images_count={len(img_urls)}")
         return self._build_ad_dict(
             list_id=list_id,
             url=url,
@@ -634,6 +632,8 @@ class ScraperMobilede:
 
         while True:
             if self.max_results and len(results) >= self.max_results:
+                break
+            if page >= 10:
                 break
 
             # fetch page with retry
