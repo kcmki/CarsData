@@ -487,7 +487,7 @@ def upsert_lbc_supabase(supa: Client, lbc_table: str, ads: List[Dict[str, Any]],
 
     # Fetch existing keys to preserve first_seen semantics
     existing_set = set()
-    for batch in _chunked(keys, 1000):
+    for batch in _chunked(keys, 450):
         res = supa.table(lbc_table).select("unique_key").in_("unique_key", batch).execute()
         rows = res.data or []
         for r in rows:
@@ -548,7 +548,7 @@ def upsert_mobile_supabase(supa: Client, mobile_table: str, ads: List[Dict[str, 
     # Fetch existing keys to preserve first_seen semantics
     existing_set = set()
     try:
-        for batch in _chunked(keys, 1000):
+        for batch in _chunked(keys, 450):
             res = supa.table(mobile_table).select("list_id").in_("list_id", batch).execute()
             rows = res.data or []
             for r in rows:
@@ -596,7 +596,7 @@ def upsert_mobile_supabase(supa: Client, mobile_table: str, ads: List[Dict[str, 
 
 def run_collect(
     config_path: str,
-    max_results: int = 1000,
+    max_results: int = 450,
     max_retries: int = 3,
     retry_sleep: int = 30,
     nodup: bool = True,
