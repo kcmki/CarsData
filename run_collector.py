@@ -173,13 +173,6 @@ def _parse_dt(s: Optional[str]) -> Optional[str]:
 def _parse_regdate(s: Optional[str]) -> Optional[str]:
     """Parse registration date into ISO format (YYYY-MM-DD).
     
-    Handles various formats:
-    - "2020" (LBC format) -> "2020-01-01"
-    - "2020-01" (Mobile.de format) -> "2020-01-01"
-    - "2020-01-15" -> "2020-01-15"
-    - "01/2020" or "2020/01" -> "2020-01-01"
-    - "15/01/2020" -> "2020-01-15"
-    - "2020-01-15 00:00:00" -> "2020-01-15"
     """
     if not s:
         return None

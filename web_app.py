@@ -34,7 +34,7 @@ async def lifespan(app: FastAPI):
             scheduler.add_job(scheduled_run, CronTrigger.from_crontab(cron_env))
     else:
         # Default: run every 30 minutes
-        scheduler.add_job(scheduled_run, CronTrigger(minute="*/6"))
+        scheduler.add_job(scheduled_run, CronTrigger(minute="*/10"))
     scheduler.start()
     try:
         yield
