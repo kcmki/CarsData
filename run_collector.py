@@ -405,7 +405,7 @@ def map_mobile_to_row(ad: Dict[str, Any]) -> Dict[str, Any]:
 
     row = {
         "unique_key": compute_unique_key(ad),
-        "list_id": _try_int(ad.get("list_id")),
+        "list_id": ad.get("list_id"),
         "url": ad.get("url"),
         "subject": ad.get("subject"),
         "body": ad.get("body"),

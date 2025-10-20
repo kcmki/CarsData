@@ -61,18 +61,25 @@ class ScraperMobilede:
         self.base_url_template = base_url_template or self.BASE_URL
 
         default_headers = {
-            "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8",
+            ":authority": "www.mobile.de",
+            ":method": "GET",
+            ":path": "/fr/voiture/recherche.html?isSearchRequest=true&ref=quickSearch&s=Car&vc=Car",
+            ":scheme": "https",
+            "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7",
             "accept-encoding": "gzip, deflate, br, zstd",
             "accept-language": "fr-FR,fr;q=0.9,en-US;q=0.8,en;q=0.7",
-            "user-agent": (
-                "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
-                "(KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36"
-            ),
-            "upgrade-insecure-requests": "1",
+            "cache-control": "max-age=0",
+            "priority": "u=0, i",
             "sec-fetch-dest": "document",
             "sec-fetch-mode": "navigate",
             "sec-fetch-site": "none",
             "sec-fetch-user": "?1",
+            "upgrade-insecure-requests": "1",
+            "user-agent": (
+                "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
+                "AppleWebKit/537.36 (KHTML, like Gecko) "
+                "Chrome/140.0.0.0 Safari/537.36"
+            ),
         }
         self.headers: Dict[str, str] = default_headers
         if headers:
@@ -214,6 +221,16 @@ class ScraperMobilede:
         return "https://www.automobile.fr" + href
 
     def _parse_article(self, art) -> Optional[Dict[str, Any]]:
+        # Detect new layout vs old layout
+        is_new_layout = art.select_one("a[class*='BaseListing']")
+        
+        if is_new_layout:
+            return self._parse_article_new_layout(art)
+        else:
+            return self._parse_article_old_layout(art)
+    
+    def _parse_article_old_layout(self, art) -> Optional[Dict[str, Any]]:
+        """Parse article with old layout (vehicle-data, vehicle-information classes)"""
         # id and url
         a = art.select_one("a.vehicle-data") or art.find("a", attrs={"data-vehicle-id": True})
         if not a:
@@ -284,6 +301,215 @@ class ScraperMobilede:
                 if len(parts) > 1:
                     car_model = parts[1]
 
+        return self._build_ad_dict(
+            list_id=list_id,
+            url=url,
+            subject=subject,
+            price=price,
+            reg=reg,
+            km=km,
+            kw=kw,
+            ch=ch,
+            specs=specs,
+            color_doors=color_doors,
+            img_url=img_url,
+            city=city,
+            zipcode=zipcode,
+            car_brand=car_brand,
+            car_model=car_model
+        )
+    
+    def _parse_article_new_layout(self, art) -> Optional[Dict[str, Any]]:
+        """Parse article with new layout (robust selectors, class-hash independent)"""
+
+        # --- LINK / URL ---
+        a = art.select_one(
+            "a[class*='BaseListing']"
+        )
+        if not a:
+            logging.info("URL not found for item")
+            return None
+
+        url = self._abs_url(a.get("href", ""))
+        logging.info(url)
+        # Extract vehicle ID
+        list_id = None
+        if url:
+            m = re.search(r"[?&]id=(\d+)\b", url)
+            if m:
+                try:
+                    list_id = int(m.group(1))
+                except Exception:
+                    list_id = None
+
+        # If no numeric id found, generate a UUID so the ad still has a unique identifier
+        if list_id is None:
+            uid = str(__import__("uuid").uuid4())
+            list_id = uid
+
+        # --- TITLE ---
+        title_el = art.select_one(
+            "h2[class*='ListingTitle'], "
+            "h2[data-testid='title'], "
+            "h2[class*='title'], "
+            "h2"
+        )
+        subject = self._text(title_el)
+        if subject:
+            subject = re.sub(r"^Sponsorisée\s*", "", subject, flags=re.IGNORECASE).strip()
+
+        # --- PRICE ---
+        price_el = art.select_one(
+            "span[class*='PriceLabel'], "
+            "span[data-testid='price-label'], "
+            "div[data-testid='price'] span, "
+            "span[class*='price']"
+        )
+        price = self._num(self._text(price_el))
+
+        # --- DETAILS (date, km, power, fuel) ---
+        details_el = art.select_one(
+            "div[data-testid='listing-details-attributes'], "
+            "ul[data-testid='vehicle-features'], "
+            "div[class*='attributes'], "
+            "div[class*='vehicleDetails']"
+        )
+        details_text = self._text(details_el)
+
+        reg = km = kw = ch = fuel = None
+
+        if details_text:
+            # Split on any bullet or separator
+            parts = [p.strip() for p in re.split(r"[•|·|●|∙]", details_text) if p.strip()]
+            for part in parts:
+                # Registration date (PI 08/2018)
+                m_reg = re.search(r"PI\s+(\d{2})/(\d{4})", part)
+                if m_reg:
+                    reg = f"{m_reg.group(2)}-{m_reg.group(1)}"
+
+                # Mileage (107 389 km)
+                m_km = re.search(r"([\d\s\u202f\u00a0]+)\s*km", part)
+                if m_km:
+                    km_str = re.sub(r"[\s\u202f\u00a0]", "", m_km.group(1))
+                    try:
+                        km = int(km_str)
+                    except Exception:
+                        pass
+
+                # Power (200 kW (272 Ch DIN))
+                kw_match, ch_match = self._parse_power(part)
+                if kw_match:
+                    kw = kw_match
+                if ch_match:
+                    ch = ch_match
+
+                # Fuel
+                part_lower = part.lower()
+                if "hybride" in part_lower:
+                    fuel = part.strip()
+                elif any(k in part_lower for k in ["diesel", "essence", "petrol", "electric", "électrique", "gpl"]):
+                    fuel = part.strip()
+
+        # --- SELLER INFO ---
+        seller_el = art.select_one(
+            "div[class*='SellerInfo'], "
+            "div[data-testid='seller-info'], "
+            "div[class*='dealer'], "
+            "div[class*='seller']"
+        )
+        city = zipcode = None
+        if seller_el:
+            seller_text = self._text(seller_el)
+            m = re.search(r"([A-Z]{2})-(\d{4,5})\s+([^(]+)", seller_text)
+            if m:
+                zipcode = m.group(2)
+                city = m.group(3).strip()
+
+        # --- IMAGES ---
+        img_urls = []
+
+        main_img = art.select_one(
+            "img[class*='PreviewImage'], "
+            "img[data-testid='main-image'], "
+            "img[class*='mainImage'], "
+            "img"
+        )
+        if main_img:
+            img_url = main_img.get("src") or (
+                main_img.get("srcset", "").split()[0] if main_img.get("srcset") else None
+            )
+            if img_url:
+                img_urls.append(img_url)
+
+        for thumb in art.select(
+            "img[class*='Thumbnail'], img[data-testid*='thumbnail'], img[class*='thumb']"
+        ):
+            thumb_url = thumb.get("src")
+            if thumb_url and thumb_url not in img_urls:
+                img_urls.append(thumb_url)
+
+        img_url = img_urls[0] if img_urls else None
+
+        # --- BRAND & MODEL ---
+        car_brand = car_model = None
+        if subject:
+            parts = subject.split()
+            if parts:
+                car_brand = parts[0]
+                if len(parts) > 1:
+                    car_model = parts[1]
+
+        # --- SPECS DICT ---
+        specs = {}
+        if fuel:
+            specs["fuel"] = fuel
+
+        color_doors = {}
+
+        # --- BUILD FINAL AD DICT ---
+        logging.info(f"Parsed ad: id={list_id}, url={url}, subject={subject}, price={price}, reg={reg}, km={km}, kw={kw}, ch={ch}, city={city}, zipcode={zipcode}, brand={car_brand}, model={car_model}, images_count={len(img_urls)}")
+        return self._build_ad_dict(
+            list_id=list_id,
+            url=url,
+            subject=subject,
+            price=price,
+            reg=reg,
+            km=km,
+            kw=kw,
+            ch=ch,
+            specs=specs,
+            color_doors=color_doors,
+            img_url=img_url,
+            city=city,
+            zipcode=zipcode,
+            car_brand=car_brand,
+            car_model=car_model,
+            img_urls=img_urls if len(img_urls) > 1 else None
+        )
+
+    def _build_ad_dict(
+        self,
+        list_id: Optional[int],
+        url: str,
+        subject: str,
+        price: Optional[float],
+        reg: Optional[str],
+        km: Optional[int],
+        kw: Optional[int],
+        ch: Optional[int],
+        specs: Dict[str, Any],
+        color_doors: Dict[str, Any],
+        img_url: Optional[str],
+        city: Optional[str],
+        zipcode: Optional[str],
+        car_brand: Optional[str],
+        car_model: Optional[str],
+        img_urls: Optional[List[str]] = None
+    ) -> Dict[str, Any]:
+        """Build the final ad dictionary from parsed components"""
+        
+        """Build the final ad dictionary from parsed components"""
+        
         attrs: List[Dict[str, Any]] = []
         def add_attr(key: str, value: Any, value_label: Optional[str] = None):
             if value is None or value == "":
@@ -306,15 +532,26 @@ class ScraperMobilede:
             add_attr("doors", color_doors["doors"]) 
         if ch is not None:
             add_attr("horse_power_din", ch)
+        
         # images shape expected by mapper
-        images = {
-            "nb_images": None,
-            "thumb_url": img_url,
-            "small_url": img_url,
-            "urls": [img_url] if img_url else None,
-            "urls_thumb": [img_url] if img_url else None,
-            "urls_large": None,
-        }
+        if img_urls:
+            images = {
+                "nb_images": len(img_urls),
+                "thumb_url": img_urls[0] if img_urls else None,
+                "small_url": img_urls[0] if img_urls else None,
+                "urls": img_urls,
+                "urls_thumb": img_urls,
+                "urls_large": None,
+            }
+        else:
+            images = {
+                "nb_images": None,
+                "thumb_url": img_url,
+                "small_url": img_url,
+                "urls": [img_url] if img_url else None,
+                "urls_thumb": [img_url] if img_url else None,
+                "urls_large": None,
+            }
 
         # build final ad dict compatible with map_ad_to_row
         # Use a format parseable by run_collector._parse_dt (no microseconds)
@@ -368,15 +605,26 @@ class ScraperMobilede:
     def deduplicate_rows(rows: Iterable[Dict[str, Any]], key_field: str = "id") -> List[Dict[str, Any]]:
         seen: Set[str] = set()
         out: List[Dict[str, Any]] = []
+
         for r in rows:
-            k = r.get(key_field) or r.get("list_id") or r.get("unique_key")
-            if k is None:
+            # Try multiple possible key names in priority order
+            k: Optional[Any] = (
+                r.get(key_field)
+                or r.get("list_id")
+                or r.get("unique_key")
+            )
+
+            # Skip rows with no valid key
+            if not k:
                 continue
-            k = str(k)
-            if k in seen:
+
+            k_str = str(k).strip()
+            if not k_str or k_str in seen:
                 continue
-            seen.add(k)
+
+            seen.add(k_str)
             out.append(r)
+
         return out
 
     def scrape(self) -> List[Dict[str, Any]]:
@@ -401,13 +649,16 @@ class ScraperMobilede:
                         continue
                     else:
                         raise
-
+            
             soup = BeautifulSoup(html, "html.parser")
-            articles = soup.select("article.list-entry")
+            # Support both old and new layout article selectors
+            articles = soup.select(
+                'div[data-testid="result-list"] article, article.list-entry'
+            )
             if not articles:
                 logger.info("No articles on page %s; stopping.", page)
                 break
-
+            logger.info("Fetched page %s with %d articles.", page, len(articles))
             page_items: List[Dict[str, Any]] = []
             stop_due_known = False
             for art in articles:
@@ -449,10 +700,3 @@ class ScraperMobilede:
         with open(path, "w", encoding="utf-8") as f:
             json.dump(self._results, f, ensure_ascii=False, indent=2)
 
-
-if __name__ == "__main__":
-    s = ScraperMobilede(max_results=20, page_size=20)
-    ads = s.scrape()
-    print(f"Scraped {len(ads)} ads")
-    if ads:
-        print(json.dumps(ads[0], ensure_ascii=False, indent=2))

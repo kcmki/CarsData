@@ -1,0 +1,836 @@
+[
+  {
+    "source": "mobilede",
+    "id": "1583577611",
+    "list_id": 1583577611,
+    "url": "",
+    "subject": "Cupra Leon",
+    "body": null,
+    "category_id": "cars",
+    "category_name": "Voitures",
+    "ad_type": "offer",
+    "status": "active",
+    "price": [
+      32990.0
+    ],
+    "price_cents": null,
+    "first_publication_date": null,
+    "expiration_date": null,
+    "index_date": "2025-10-20T18:27:29+0000",
+    "images": {
+      "nb_images": 14,
+      "thumb_url": "https://img.classistatic.de/api/v1/mo-prod/images/13/13477f56-9581-45f2-9009-18db226bf7e3?rule=mo-1600",
+      "small_url": "https://img.classistatic.de/api/v1/mo-prod/images/13/13477f56-9581-45f2-9009-18db226bf7e3?rule=mo-1600",
+      "urls": [
+        "https://img.classistatic.de/api/v1/mo-prod/images/13/13477f56-9581-45f2-9009-18db226bf7e3?rule=mo-1600",
+        "https://img.classistatic.de/api/v1/mo-prod/images/b1/b126240b-8dc0-464c-9c1e-621eca9c4b2f?rule=mo-200",
+        "https://img.classistatic.de/api/v1/mo-prod/images/b4/b4a42ddf-ef97-4f0e-9bbd-fa4efbd00b68?rule=mo-200",
+        "https://img.classistatic.de/api/v1/mo-prod/images/2b/2b512fe6-9e8b-48d5-a53d-4c21863ec0f8?rule=mo-200",
+        "https://img.classistatic.de/api/v1/mo-prod/images/d3/d30eb37a-1cd0-44ce-be61-a96fd4e873a4?rule=mo-240",
+        "https://img.classistatic.de/api/v1/mo-prod/images/fe/febe5995-785a-4c44-9add-a7a7244074cc?rule=mo-240",
+        "https://img.classistatic.de/api/v1/mo-prod/images/14/14c92826-4650-446d-ac6c-21ee6c14d7dc?rule=mo-240",
+        "https://img.classistatic.de/api/v1/mo-prod/images/07/0722eacf-adb2-478f-b717-739382e10977?rule=mo-240",
+        "https://img.classistatic.de/api/v1/mo-prod/images/21/21e00c35-edda-4e66-97f4-d9457c652b56?rule=mo-240",
+        "https://img.classistatic.de/api/v1/mo-prod/images/a3/a398c20c-d35b-4433-a372-6159f8ea417c?rule=mo-240",
+        "https://img.classistatic.de/api/v1/mo-prod/images/41/41ba81b9-9698-4d8b-bc9f-cc67ac91faee?rule=mo-240",
+        "https://img.classistatic.de/api/v1/mo-prod/images/0e/0e5c06a9-1884-4af4-9218-b3d0bb10e9d7?rule=mo-240",
+        "https://img.classistatic.de/api/v1/mo-prod/images/97/974887ab-5285-432b-ad68-7fa4294da048?rule=mo-240",
+        "https://img.classistatic.de/api/v1/mo-prod/images/3a/3a1d3ce9-3246-40dc-a783-adcbed8edfb7?rule=mo-240"
+      ],
+      "urls_thumb": [
+        "https://img.classistatic.de/api/v1/mo-prod/images/13/13477f56-9581-45f2-9009-18db226bf7e3?rule=mo-1600",
+        "https://img.classistatic.de/api/v1/mo-prod/images/b1/b126240b-8dc0-464c-9c1e-621eca9c4b2f?rule=mo-200",
+        "https://img.classistatic.de/api/v1/mo-prod/images/b4/b4a42ddf-ef97-4f0e-9bbd-fa4efbd00b68?rule=mo-200",
+        "https://img.classistatic.de/api/v1/mo-prod/images/2b/2b512fe6-9e8b-48d5-a53d-4c21863ec0f8?rule=mo-200",
+        "https://img.classistatic.de/api/v1/mo-prod/images/d3/d30eb37a-1cd0-44ce-be61-a96fd4e873a4?rule=mo-240",
+        "https://img.classistatic.de/api/v1/mo-prod/images/fe/febe5995-785a-4c44-9add-a7a7244074cc?rule=mo-240",
+        "https://img.classistatic.de/api/v1/mo-prod/images/14/14c92826-4650-446d-ac6c-21ee6c14d7dc?rule=mo-240",
+        "https://img.classistatic.de/api/v1/mo-prod/images/07/0722eacf-adb2-478f-b717-739382e10977?rule=mo-240",
+        "https://img.classistatic.de/api/v1/mo-prod/images/21/21e00c35-edda-4e66-97f4-d9457c652b56?rule=mo-240",
+        "https://img.classistatic.de/api/v1/mo-prod/images/a3/a398c20c-d35b-4433-a372-6159f8ea417c?rule=mo-240",
+        "https://img.classistatic.de/api/v1/mo-prod/images/41/41ba81b9-9698-4d8b-bc9f-cc67ac91faee?rule=mo-240",
+        "https://img.classistatic.de/api/v1/mo-prod/images/0e/0e5c06a9-1884-4af4-9218-b3d0bb10e9d7?rule=mo-240",
+        "https://img.classistatic.de/api/v1/mo-prod/images/97/974887ab-5285-432b-ad68-7fa4294da048?rule=mo-240",
+        "https://img.classistatic.de/api/v1/mo-prod/images/3a/3a1d3ce9-3246-40dc-a783-adcbed8edfb7?rule=mo-240"
+      ],
+      "urls_large": null
+    },
+    "location": {
+      "country_id": "FR",
+      "region_id": null,
+      "region_name": null,
+      "department_id": null,
+      "department_name": null,
+      "city": "Harmstorf/Hamburg",
+      "city_label": "Harmstorf/Hamburg",
+      "zipcode": "21228",
+      "lat": null,
+      "lng": null
+    },
+    "owner": {
+      "store_id": null,
+      "user_id": null,
+      "type": null,
+      "name": null
+    },
+    "attributes": [
+      {
+        "key": "brand",
+        "value": "Cupra",
+        "value_label": "Cupra"
+      },
+      {
+        "key": "model",
+        "value": "Leon",
+        "value_label": "Leon"
+      },
+      {
+        "key": "regdate",
+        "value": "2025-09",
+        "value_label": "2025-09"
+      },
+      {
+        "key": "mileage",
+        "value": 25,
+        "value_label": "25"
+      },
+      {
+        "key": "fuel",
+        "value": "Essence",
+        "value_label": "Essence"
+      },
+      {
+        "key": "horse_power_din",
+        "value": 150,
+        "value_label": "150"
+      }
+    ]
+  },
+  {
+    "source": "mobilede",
+    "id": "2882844306",
+    "list_id": 2882844306,
+    "url": "",
+    "subject": "Volkswagen Golf",
+    "body": null,
+    "category_id": "cars",
+    "category_name": "Voitures",
+    "ad_type": "offer",
+    "status": "active",
+    "price": [
+      18950.0
+    ],
+    "price_cents": null,
+    "first_publication_date": null,
+    "expiration_date": null,
+    "index_date": "2025-10-20T18:27:29+0000",
+    "images": {
+      "nb_images": null,
+      "thumb_url": "https://img.classistatic.de/api/v1/mo-prod/images/4e/4e671b33-61b5-4bd8-ad19-77660a13e903?rule=mo-1600",
+      "small_url": "https://img.classistatic.de/api/v1/mo-prod/images/4e/4e671b33-61b5-4bd8-ad19-77660a13e903?rule=mo-1600",
+      "urls": [
+        "https://img.classistatic.de/api/v1/mo-prod/images/4e/4e671b33-61b5-4bd8-ad19-77660a13e903?rule=mo-1600"
+      ],
+      "urls_thumb": [
+        "https://img.classistatic.de/api/v1/mo-prod/images/4e/4e671b33-61b5-4bd8-ad19-77660a13e903?rule=mo-1600"
+      ],
+      "urls_large": null
+    },
+    "location": {
+      "country_id": "FR",
+      "region_id": null,
+      "region_name": null,
+      "department_id": null,
+      "department_name": null,
+      "city": "Pfungstadt",
+      "city_label": "Pfungstadt",
+      "zipcode": "64319",
+      "lat": null,
+      "lng": null
+    },
+    "owner": {
+      "store_id": null,
+      "user_id": null,
+      "type": null,
+      "name": null
+    },
+    "attributes": [
+      {
+        "key": "brand",
+        "value": "Volkswagen",
+        "value_label": "Volkswagen"
+      },
+      {
+        "key": "model",
+        "value": "Golf",
+        "value_label": "Golf"
+      },
+      {
+        "key": "regdate",
+        "value": "2016-01",
+        "value_label": "2016-01"
+      },
+      {
+        "key": "mileage",
+        "value": 94787,
+        "value_label": "94787"
+      },
+      {
+        "key": "fuel",
+        "value": "Essence",
+        "value_label": "Essence"
+      },
+      {
+        "key": "horse_power_din",
+        "value": 230,
+        "value_label": "230"
+      }
+    ]
+  },
+  {
+    "source": "mobilede",
+    "id": "623038771",
+    "list_id": 623038771,
+    "url": "",
+    "subject": "Volkswagen Golf",
+    "body": null,
+    "category_id": "cars",
+    "category_name": "Voitures",
+    "ad_type": "offer",
+    "status": "active",
+    "price": [
+      14990.0
+    ],
+    "price_cents": null,
+    "first_publication_date": null,
+    "expiration_date": null,
+    "index_date": "2025-10-20T18:27:29+0000",
+    "images": {
+      "nb_images": null,
+      "thumb_url": "https://img.classistatic.de/api/v1/mo-prod/images/ca/cafb5152-6a0f-4aa6-97b3-36b3b6ff913d?rule=mo-1600",
+      "small_url": "https://img.classistatic.de/api/v1/mo-prod/images/ca/cafb5152-6a0f-4aa6-97b3-36b3b6ff913d?rule=mo-1600",
+      "urls": [
+        "https://img.classistatic.de/api/v1/mo-prod/images/ca/cafb5152-6a0f-4aa6-97b3-36b3b6ff913d?rule=mo-1600"
+      ],
+      "urls_thumb": [
+        "https://img.classistatic.de/api/v1/mo-prod/images/ca/cafb5152-6a0f-4aa6-97b3-36b3b6ff913d?rule=mo-1600"
+      ],
+      "urls_large": null
+    },
+    "location": {
+      "country_id": "FR",
+      "region_id": null,
+      "region_name": null,
+      "department_id": null,
+      "department_name": null,
+      "city": null,
+      "city_label": null,
+      "zipcode": null,
+      "lat": null,
+      "lng": null
+    },
+    "owner": {
+      "store_id": null,
+      "user_id": null,
+      "type": null,
+      "name": null
+    },
+    "attributes": [
+      {
+        "key": "brand",
+        "value": "Volkswagen",
+        "value_label": "Volkswagen"
+      },
+      {
+        "key": "model",
+        "value": "Golf",
+        "value_label": "Golf"
+      },
+      {
+        "key": "regdate",
+        "value": "2013-10",
+        "value_label": "2013-10"
+      },
+      {
+        "key": "mileage",
+        "value": 102696,
+        "value_label": "102696"
+      },
+      {
+        "key": "fuel",
+        "value": "Essence",
+        "value_label": "Essence"
+      },
+      {
+        "key": "horse_power_din",
+        "value": 220,
+        "value_label": "220"
+      }
+    ]
+  },
+  {
+    "source": "mobilede",
+    "id": "3912055461",
+    "list_id": 3912055461,
+    "url": "",
+    "subject": "Hyundai STARIA",
+    "body": null,
+    "category_id": "cars",
+    "category_name": "Voitures",
+    "ad_type": "offer",
+    "status": "active",
+    "price": [
+      45490.0
+    ],
+    "price_cents": null,
+    "first_publication_date": null,
+    "expiration_date": null,
+    "index_date": "2025-10-20T18:27:29+0000",
+    "images": {
+      "nb_images": null,
+      "thumb_url": "https://img.classistatic.de/api/v1/mo-prod/images/03/036f9c85-265b-4df3-b826-4ad84dd9c992?rule=mo-1600",
+      "small_url": "https://img.classistatic.de/api/v1/mo-prod/images/03/036f9c85-265b-4df3-b826-4ad84dd9c992?rule=mo-1600",
+      "urls": [
+        "https://img.classistatic.de/api/v1/mo-prod/images/03/036f9c85-265b-4df3-b826-4ad84dd9c992?rule=mo-1600"
+      ],
+      "urls_thumb": [
+        "https://img.classistatic.de/api/v1/mo-prod/images/03/036f9c85-265b-4df3-b826-4ad84dd9c992?rule=mo-1600"
+      ],
+      "urls_large": null
+    },
+    "location": {
+      "country_id": "FR",
+      "region_id": null,
+      "region_name": null,
+      "department_id": null,
+      "department_name": null,
+      "city": "Potsdam",
+      "city_label": "Potsdam",
+      "zipcode": "14469",
+      "lat": null,
+      "lng": null
+    },
+    "owner": {
+      "store_id": null,
+      "user_id": null,
+      "type": null,
+      "name": null
+    },
+    "attributes": [
+      {
+        "key": "brand",
+        "value": "Hyundai",
+        "value_label": "Hyundai"
+      },
+      {
+        "key": "model",
+        "value": "STARIA",
+        "value_label": "STARIA"
+      },
+      {
+        "key": "regdate",
+        "value": "2024-11",
+        "value_label": "2024-11"
+      },
+      {
+        "key": "mileage",
+        "value": 7000,
+        "value_label": "7000"
+      },
+      {
+        "key": "fuel",
+        "value": "Hybride (essence/électrique)",
+        "value_label": "Hybride (essence/électrique)"
+      },
+      {
+        "key": "horse_power_din",
+        "value": 224,
+        "value_label": "224"
+      }
+    ]
+  },
+  {
+    "source": "mobilede",
+    "id": "1844230051",
+    "list_id": 1844230051,
+    "url": "",
+    "subject": "Porsche Cayenne",
+    "body": null,
+    "category_id": "cars",
+    "category_name": "Voitures",
+    "ad_type": "offer",
+    "status": "active",
+    "price": [
+      89780.0
+    ],
+    "price_cents": null,
+    "first_publication_date": null,
+    "expiration_date": null,
+    "index_date": "2025-10-20T18:27:29+0000",
+    "images": {
+      "nb_images": null,
+      "thumb_url": "https://img.classistatic.de/api/v1/mo-prod/images/29/29603cb6-3563-4e97-90e8-12b333ffdf99?rule=mo-1600",
+      "small_url": "https://img.classistatic.de/api/v1/mo-prod/images/29/29603cb6-3563-4e97-90e8-12b333ffdf99?rule=mo-1600",
+      "urls": [
+        "https://img.classistatic.de/api/v1/mo-prod/images/29/29603cb6-3563-4e97-90e8-12b333ffdf99?rule=mo-1600"
+      ],
+      "urls_thumb": [
+        "https://img.classistatic.de/api/v1/mo-prod/images/29/29603cb6-3563-4e97-90e8-12b333ffdf99?rule=mo-1600"
+      ],
+      "urls_large": null
+    },
+    "location": {
+      "country_id": "FR",
+      "region_id": null,
+      "region_name": null,
+      "department_id": null,
+      "department_name": null,
+      "city": "Leipzig",
+      "city_label": "Leipzig",
+      "zipcode": "04356",
+      "lat": null,
+      "lng": null
+    },
+    "owner": {
+      "store_id": null,
+      "user_id": null,
+      "type": null,
+      "name": null
+    },
+    "attributes": [
+      {
+        "key": "brand",
+        "value": "Porsche",
+        "value_label": "Porsche"
+      },
+      {
+        "key": "model",
+        "value": "Cayenne",
+        "value_label": "Cayenne"
+      },
+      {
+        "key": "regdate",
+        "value": "2023-08",
+        "value_label": "2023-08"
+      },
+      {
+        "key": "mileage",
+        "value": 25951,
+        "value_label": "25951"
+      },
+      {
+        "key": "fuel",
+        "value": "Hybride (essence/électrique)",
+        "value_label": "Hybride (essence/électrique)"
+      },
+      {
+        "key": "horse_power_din",
+        "value": 470,
+        "value_label": "470"
+      }
+    ]
+  },
+  {
+    "source": "mobilede",
+    "id": "3111425857",
+    "list_id": 3111425857,
+    "url": "",
+    "subject": "Skoda Kodiaq",
+    "body": null,
+    "category_id": "cars",
+    "category_name": "Voitures",
+    "ad_type": "offer",
+    "status": "active",
+    "price": [
+      53329.0
+    ],
+    "price_cents": null,
+    "first_publication_date": null,
+    "expiration_date": null,
+    "index_date": "2025-10-20T18:27:29+0000",
+    "images": {
+      "nb_images": null,
+      "thumb_url": null,
+      "small_url": null,
+      "urls": null,
+      "urls_thumb": null,
+      "urls_large": null
+    },
+    "location": {
+      "country_id": "FR",
+      "region_id": null,
+      "region_name": null,
+      "department_id": null,
+      "department_name": null,
+      "city": "Brandenburg",
+      "city_label": "Brandenburg",
+      "zipcode": "14770",
+      "lat": null,
+      "lng": null
+    },
+    "owner": {
+      "store_id": null,
+      "user_id": null,
+      "type": null,
+      "name": null
+    },
+    "attributes": [
+      {
+        "key": "brand",
+        "value": "Skoda",
+        "value_label": "Skoda"
+      },
+      {
+        "key": "model",
+        "value": "Kodiaq",
+        "value_label": "Kodiaq"
+      },
+      {
+        "key": "fuel",
+        "value": "Diesel",
+        "value_label": "Diesel"
+      },
+      {
+        "key": "horse_power_din",
+        "value": 150,
+        "value_label": "150"
+      }
+    ]
+  },
+  {
+    "source": "mobilede",
+    "id": "287213903",
+    "list_id": 287213903,
+    "url": "",
+    "subject": "Volkswagen Golf",
+    "body": null,
+    "category_id": "cars",
+    "category_name": "Voitures",
+    "ad_type": "offer",
+    "status": "active",
+    "price": [
+      13950.0
+    ],
+    "price_cents": null,
+    "first_publication_date": null,
+    "expiration_date": null,
+    "index_date": "2025-10-20T18:27:29+0000",
+    "images": {
+      "nb_images": 4,
+      "thumb_url": "https://img.classistatic.de/api/v1/mo-prod/images/88/880f8490-7949-48cb-bfcd-8f5e02bcacca?rule=mo-1600",
+      "small_url": "https://img.classistatic.de/api/v1/mo-prod/images/88/880f8490-7949-48cb-bfcd-8f5e02bcacca?rule=mo-1600",
+      "urls": [
+        "https://img.classistatic.de/api/v1/mo-prod/images/88/880f8490-7949-48cb-bfcd-8f5e02bcacca?rule=mo-1600",
+        "https://img.classistatic.de/api/v1/mo-prod/images/08/08198378-8cd2-445f-a612-0ebbc125ea07?rule=mo-200",
+        "https://img.classistatic.de/api/v1/mo-prod/images/44/443131ba-4780-4417-a0e6-ef80bb9a7743?rule=mo-200",
+        "https://img.classistatic.de/api/v1/mo-prod/images/4f/4feffdc5-20e2-4cad-bb15-df0bc08c580d?rule=mo-200"
+      ],
+      "urls_thumb": [
+        "https://img.classistatic.de/api/v1/mo-prod/images/88/880f8490-7949-48cb-bfcd-8f5e02bcacca?rule=mo-1600",
+        "https://img.classistatic.de/api/v1/mo-prod/images/08/08198378-8cd2-445f-a612-0ebbc125ea07?rule=mo-200",
+        "https://img.classistatic.de/api/v1/mo-prod/images/44/443131ba-4780-4417-a0e6-ef80bb9a7743?rule=mo-200",
+        "https://img.classistatic.de/api/v1/mo-prod/images/4f/4feffdc5-20e2-4cad-bb15-df0bc08c580d?rule=mo-200"
+      ],
+      "urls_large": null
+    },
+    "location": {
+      "country_id": "FR",
+      "region_id": null,
+      "region_name": null,
+      "department_id": null,
+      "department_name": null,
+      "city": null,
+      "city_label": null,
+      "zipcode": null,
+      "lat": null,
+      "lng": null
+    },
+    "owner": {
+      "store_id": null,
+      "user_id": null,
+      "type": null,
+      "name": null
+    },
+    "attributes": [
+      {
+        "key": "brand",
+        "value": "Volkswagen",
+        "value_label": "Volkswagen"
+      },
+      {
+        "key": "model",
+        "value": "Golf",
+        "value_label": "Golf"
+      },
+      {
+        "key": "regdate",
+        "value": "2016-03",
+        "value_label": "2016-03"
+      },
+      {
+        "key": "mileage",
+        "value": 98320,
+        "value_label": "98320"
+      },
+      {
+        "key": "fuel",
+        "value": "Essence",
+        "value_label": "Essence"
+      },
+      {
+        "key": "horse_power_din",
+        "value": 150,
+        "value_label": "150"
+      }
+    ]
+  },
+  {
+    "source": "mobilede",
+    "id": "3379859632",
+    "list_id": 3379859632,
+    "url": "",
+    "subject": "Volkswagen Golf",
+    "body": null,
+    "category_id": "cars",
+    "category_name": "Voitures",
+    "ad_type": "offer",
+    "status": "active",
+    "price": [
+      16900.0
+    ],
+    "price_cents": null,
+    "first_publication_date": null,
+    "expiration_date": null,
+    "index_date": "2025-10-20T18:27:29+0000",
+    "images": {
+      "nb_images": null,
+      "thumb_url": "https://img.classistatic.de/api/v1/mo-prod/images/76/764533e4-1d8e-4057-a431-6ee6ae3c3325?rule=mo-1600",
+      "small_url": "https://img.classistatic.de/api/v1/mo-prod/images/76/764533e4-1d8e-4057-a431-6ee6ae3c3325?rule=mo-1600",
+      "urls": [
+        "https://img.classistatic.de/api/v1/mo-prod/images/76/764533e4-1d8e-4057-a431-6ee6ae3c3325?rule=mo-1600"
+      ],
+      "urls_thumb": [
+        "https://img.classistatic.de/api/v1/mo-prod/images/76/764533e4-1d8e-4057-a431-6ee6ae3c3325?rule=mo-1600"
+      ],
+      "urls_large": null
+    },
+    "location": {
+      "country_id": "FR",
+      "region_id": null,
+      "region_name": null,
+      "department_id": null,
+      "department_name": null,
+      "city": "Hamburg",
+      "city_label": "Hamburg",
+      "zipcode": "22529",
+      "lat": null,
+      "lng": null
+    },
+    "owner": {
+      "store_id": null,
+      "user_id": null,
+      "type": null,
+      "name": null
+    },
+    "attributes": [
+      {
+        "key": "brand",
+        "value": "Volkswagen",
+        "value_label": "Volkswagen"
+      },
+      {
+        "key": "model",
+        "value": "Golf",
+        "value_label": "Golf"
+      },
+      {
+        "key": "regdate",
+        "value": "2017-09",
+        "value_label": "2017-09"
+      },
+      {
+        "key": "mileage",
+        "value": 87999,
+        "value_label": "87999"
+      },
+      {
+        "key": "fuel",
+        "value": "Essence",
+        "value_label": "Essence"
+      },
+      {
+        "key": "horse_power_din",
+        "value": 125,
+        "value_label": "125"
+      }
+    ]
+  },
+  {
+    "source": "mobilede",
+    "id": "1869648577",
+    "list_id": 1869648577,
+    "url": "",
+    "subject": "Volkswagen Golf",
+    "body": null,
+    "category_id": "cars",
+    "category_name": "Voitures",
+    "ad_type": "offer",
+    "status": "active",
+    "price": [
+      21900.0
+    ],
+    "price_cents": null,
+    "first_publication_date": null,
+    "expiration_date": null,
+    "index_date": "2025-10-20T18:27:29+0000",
+    "images": {
+      "nb_images": null,
+      "thumb_url": "https://img.classistatic.de/api/v1/mo-prod/images/24/2422dbf0-1cd4-4175-83e5-378b72019df3?rule=mo-1600",
+      "small_url": "https://img.classistatic.de/api/v1/mo-prod/images/24/2422dbf0-1cd4-4175-83e5-378b72019df3?rule=mo-1600",
+      "urls": [
+        "https://img.classistatic.de/api/v1/mo-prod/images/24/2422dbf0-1cd4-4175-83e5-378b72019df3?rule=mo-1600"
+      ],
+      "urls_thumb": [
+        "https://img.classistatic.de/api/v1/mo-prod/images/24/2422dbf0-1cd4-4175-83e5-378b72019df3?rule=mo-1600"
+      ],
+      "urls_large": null
+    },
+    "location": {
+      "country_id": "FR",
+      "region_id": null,
+      "region_name": null,
+      "department_id": null,
+      "department_name": null,
+      "city": "Castrop-Rauxel",
+      "city_label": "Castrop-Rauxel",
+      "zipcode": "44579",
+      "lat": null,
+      "lng": null
+    },
+    "owner": {
+      "store_id": null,
+      "user_id": null,
+      "type": null,
+      "name": null
+    },
+    "attributes": [
+      {
+        "key": "brand",
+        "value": "Volkswagen",
+        "value_label": "Volkswagen"
+      },
+      {
+        "key": "model",
+        "value": "Golf",
+        "value_label": "Golf"
+      },
+      {
+        "key": "regdate",
+        "value": "2017-09",
+        "value_label": "2017-09"
+      },
+      {
+        "key": "mileage",
+        "value": 96000,
+        "value_label": "96000"
+      },
+      {
+        "key": "fuel",
+        "value": "Essence",
+        "value_label": "Essence"
+      },
+      {
+        "key": "horse_power_din",
+        "value": 330,
+        "value_label": "330"
+      }
+    ]
+  },
+  {
+    "source": "mobilede",
+    "id": "3022876914",
+    "list_id": 3022876914,
+    "url": "",
+    "subject": "Volkswagen Golf",
+    "body": null,
+    "category_id": "cars",
+    "category_name": "Voitures",
+    "ad_type": "offer",
+    "status": "active",
+    "price": [
+      24990.0
+    ],
+    "price_cents": null,
+    "first_publication_date": null,
+    "expiration_date": null,
+    "index_date": "2025-10-20T18:27:29+0000",
+    "images": {
+      "nb_images": 4,
+      "thumb_url": "https://img.classistatic.de/api/v1/mo-prod/images/a2/a2d77d41-9d2a-4561-b9d6-34da54573677?rule=mo-1600",
+      "small_url": "https://img.classistatic.de/api/v1/mo-prod/images/a2/a2d77d41-9d2a-4561-b9d6-34da54573677?rule=mo-1600",
+      "urls": [
+        "https://img.classistatic.de/api/v1/mo-prod/images/a2/a2d77d41-9d2a-4561-b9d6-34da54573677?rule=mo-1600",
+        "https://img.classistatic.de/api/v1/mo-prod/images/ec/ec56fa00-23b6-40f1-a810-fde92e5bca19?rule=mo-200",
+        "https://img.classistatic.de/api/v1/mo-prod/images/93/9345e180-cc7d-4252-958d-b3c67797d8d9?rule=mo-200",
+        "https://img.classistatic.de/api/v1/mo-prod/images/8a/8a12ce27-4994-4041-8031-53125f1f5282?rule=mo-200"
+      ],
+      "urls_thumb": [
+        "https://img.classistatic.de/api/v1/mo-prod/images/a2/a2d77d41-9d2a-4561-b9d6-34da54573677?rule=mo-1600",
+        "https://img.classistatic.de/api/v1/mo-prod/images/ec/ec56fa00-23b6-40f1-a810-fde92e5bca19?rule=mo-200",
+        "https://img.classistatic.de/api/v1/mo-prod/images/93/9345e180-cc7d-4252-958d-b3c67797d8d9?rule=mo-200",
+        "https://img.classistatic.de/api/v1/mo-prod/images/8a/8a12ce27-4994-4041-8031-53125f1f5282?rule=mo-200"
+      ],
+      "urls_large": null
+    },
+    "location": {
+      "country_id": "FR",
+      "region_id": null,
+      "region_name": null,
+      "department_id": null,
+      "department_name": null,
+      "city": null,
+      "city_label": null,
+      "zipcode": null,
+      "lat": null,
+      "lng": null
+    },
+    "owner": {
+      "store_id": null,
+      "user_id": null,
+      "type": null,
+      "name": null
+    },
+    "attributes": [
+      {
+        "key": "brand",
+        "value": "Volkswagen",
+        "value_label": "Volkswagen"
+      },
+      {
+        "key": "model",
+        "value": "Golf",
+        "value_label": "Golf"
+      },
+      {
+        "key": "regdate",
+        "value": "2018-01",
+        "value_label": "2018-01"
+      },
+      {
+        "key": "mileage",
+        "value": 96878,
+        "value_label": "96878"
+      },
+      {
+        "key": "fuel",
+        "value": "Essence",
+        "value_label": "Essence"
+      },
+      {
+        "key": "horse_power_din",
+        "value": 310,
+        "value_label": "310"
+      }
+    ]
+  }
+]
