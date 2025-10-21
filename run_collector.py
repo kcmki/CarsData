@@ -590,7 +590,7 @@ def upsert_mobile_supabase(supa: Client, mobile_table: str, ads: List[Dict[str, 
 def run_collect(
     config_path: str,
     max_results: int = 450,
-    max_retries: int = 3,
+    max_retries: int = 1,
     retry_sleep: int = 30,
     nodup: bool = True,
 ):
@@ -832,23 +832,23 @@ def run_collect(
     }
     
 
-def main():
-    parser = argparse.ArgumentParser(description="Run scraper and persist to MongoDB")
-    parser.add_argument("--config", default="config.ini", help="Path to config.ini")
-    parser.add_argument("--max", type=int, default=2000, help="Max results to fetch")
-    parser.add_argument("--max-retries", type=int, default=1, help="Max retries on failure for the whole run")
-    parser.add_argument("--retry-sleep", type=int, default=30, help="Seconds to sleep between retries")
-    parser.add_argument("--nodup", action="store_true", help="Stop scraping when encountering an already-uploaded id (uses local cache)")
-    args = parser.parse_args()
-    run = run_collect(
-        config_path=args.config,
-        max_results=args.max,
-        max_retries=args.max_retries,
-        retry_sleep=args.retry_sleep,
-        nodup=args.nodup,
-    )
-    return 0 if run.get("success") else 1
+# def main():
+#     parser = argparse.ArgumentParser(description="Run scraper and persist to MongoDB")
+#     parser.add_argument("--config", default="config.ini", help="Path to config.ini")
+#     parser.add_argument("--max", type=int, default=2000, help="Max results to fetch")
+#     parser.add_argument("--max-retries", type=int, default=1, help="Max retries on failure for the whole run")
+#     parser.add_argument("--retry-sleep", type=int, default=30, help="Seconds to sleep between retries")
+#     parser.add_argument("--nodup", action="store_true", help="Stop scraping when encountering an already-uploaded id (uses local cache)")
+#     args = parser.parse_args()
+#     run = run_collect(
+#         config_path=args.config,
+#         max_results=args.max,
+#         max_retries=args.max_retries,
+#         retry_sleep=args.retry_sleep,
+#         nodup=args.nodup,
+#     )
+#     return 0 if run.get("success") else 1
 
 
-if __name__ == "__main__":
-    raise SystemExit(main())
+# if __name__ == "__main__":
+#     raise SystemExit(main())
