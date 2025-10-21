@@ -645,9 +645,7 @@ class ScraperMobilede:
                     if attempt < 2:
                         time.sleep(1 + 2 * attempt)
                         continue
-                    else:
-                        raise
-            
+                    html = "<html></html>"
             soup = BeautifulSoup(html, "html.parser")
             # Support both old and new layout article selectors
             articles = soup.select(
@@ -662,7 +660,6 @@ class ScraperMobilede:
             logger.info("Processing articles on page %s...", page)
             logger.info("Total seen so far: %d", len(articles))
             for art in articles:
-                logger.info("Parsing article...")
                 ad = self._parse_article(art)
                 if not ad:
                     continue
