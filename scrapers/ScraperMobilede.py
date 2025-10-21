@@ -34,14 +34,14 @@ class ScraperMobilede:
     """
 
     BASE_URL = (
-        "https://www.automobile.fr/cat%C3%A9gorie/voiture/vhc:car,pgs:{pgs},pgn:{pgn},dmg:false"
+        "https://www.mobile.de/fr/voiture/recherche.html?vc=Car&pageNumber={pgn}"
     )
 
     def __init__(
         self,
         start_page: int = 1,
         page_size: int = 50,
-        max_results: int = 2000,
+        max_results: int = 1100,
         headers: Optional[Dict[str, str]] = None,
         cookies: Optional[Dict[str, str]] = None,
         timeout: int = 30,
@@ -100,7 +100,7 @@ class ScraperMobilede:
 
     # ------------------------ HTTP helpers ------------------------
     def _fetch_page(self, page: int) -> str:
-        url = self.base_url_template.format(pgs=self.page_size, pgn=page)
+        url = self.base_url_template.format(pgn=page)
         if self._session is not None:
             resp = self._session.get(url, timeout=self.timeout, impersonate=self.impersonate)
         else:
