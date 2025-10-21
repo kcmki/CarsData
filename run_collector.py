@@ -761,6 +761,8 @@ def run_collect(
             )
             ads = []
             ads = scraper.scrape()
+            with open("mobilede_ads_debug.json", "w", encoding="utf-8") as f:
+                json.dump(ads, f, ensure_ascii=False, indent=2)
             logger.info("[%s] Scraped %d ads", "Mobile", len(ads))
             source_counts["Mobile"] = len(ads)
             logger.info("Total scraped across sources: %d", len(ads))
@@ -832,23 +834,23 @@ def run_collect(
     }
     
 
-# def main():
-#     parser = argparse.ArgumentParser(description="Run scraper and persist to MongoDB")
-#     parser.add_argument("--config", default="config.ini", help="Path to config.ini")
-#     parser.add_argument("--max", type=int, default=2000, help="Max results to fetch")
-#     parser.add_argument("--max-retries", type=int, default=1, help="Max retries on failure for the whole run")
-#     parser.add_argument("--retry-sleep", type=int, default=30, help="Seconds to sleep between retries")
-#     parser.add_argument("--nodup", action="store_true", help="Stop scraping when encountering an already-uploaded id (uses local cache)")
-#     args = parser.parse_args()
-#     run = run_collect(
-#         config_path=args.config,
-#         max_results=args.max,
-#         max_retries=args.max_retries,
-#         retry_sleep=args.retry_sleep,
-#         nodup=args.nodup,
-#     )
-#     return 0 if run.get("success") else 1
+def main():
+    parser = argparse.ArgumentParser(description="Run scraper and persist to MongoDB")
+    parser.add_argument("--config", default="config.ini", help="Path to config.ini")
+    parser.add_argument("--max", type=int, default=2000, help="Max results to fetch")
+    parser.add_argument("--max-retries", type=int, default=1, help="Max retries on failure for the whole run")
+    parser.add_argument("--retry-sleep", type=int, default=30, help="Seconds to sleep between retries")
+    parser.add_argument("--nodup", action="store_true", help="Stop scraping when encountering an already-uploaded id (uses local cache)")
+    args = parser.parse_args()
+    run = run_collect(
+        config_path=args.config,
+        max_results=args.max,
+        max_retries=args.max_retries,
+        retry_sleep=args.retry_sleep,
+        nodup=args.nodup,
+    )
+    return 0 if run.get("success") else 1
 
 
-# if __name__ == "__main__":
-#     raise SystemExit(main())
+if __name__ == "__main__":
+    raise SystemExit(main())

@@ -34,7 +34,7 @@ class ScraperMobilede:
     """
 
     BASE_URL = (
-        "https://www.mobile.de/fr/voiture/recherche.html?vc=Car&pageNumber={pgn}"
+        "https://www.mobile.de/fr/voiture/recherche.html?vc=Car&sb=doc&od=down&pageNumber={pgn}"
     )
 
     def __init__(
@@ -633,8 +633,6 @@ class ScraperMobilede:
         while True:
             if self.max_results and len(results) >= self.max_results:
                 break
-            if page >= 10:
-                break
 
             # fetch page with retry
             html = None
@@ -661,11 +659,15 @@ class ScraperMobilede:
             logger.info("Fetched page %s with %d articles.", page, len(articles))
             page_items: List[Dict[str, Any]] = []
             stop_due_known = False
+            logger.info("Processing articles on page %s...", page)
+            logger.info("Total seen so far: %d", len(articles))
             for art in articles:
+                logger.info("Parsing article...")
                 ad = self._parse_article(art)
                 if not ad:
                     continue
                 ad_key = ad.get("list_id")
+
                 if self._stop_on_known and self._existing_ids is not None and ad_key is not None:
                     if str(ad_key) in self._existing_ids:
                         stop_due_known = True
@@ -689,6 +691,8 @@ class ScraperMobilede:
             print("Sleeping 3s...")
             time.sleep(3)
 
+        with open("pre_dedup_mobilede_ads_debug.json", "w", encoding="utf-8") as f:
+            json.dump(results, f, ensure_ascii=False, indent=2)
         # de-dup and trim
         results = self.deduplicate_rows(results, key_field="id")
         if self.max_results:
