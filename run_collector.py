@@ -337,8 +337,6 @@ def map_lbc_to_row(ad: Dict[str, Any]) -> Dict[str, Any]:
         "critair": _try_int(_attr_val_label(attrs, "critair")),
         "horsepower_fiscal": _try_int(_attr_val_label(attrs, "horsepower")),
         "horsepower_din": _try_int(_attr_val_label(attrs, "horse_power_din")),
-        # raw for safety/debug
-        "raw": ad,
     }
     return row
 
@@ -454,8 +452,6 @@ def map_mobile_to_row(ad: Dict[str, Any]) -> Dict[str, Any]:
         "horsepower_fiscal": _try_int(horsepower_fiscal),
         "horsepower_din": _try_int(horsepower_din),
 
-        # JSON-safe raw backup
-        "raw": safe(ad),
     }
 
     # Make sure all datetimes are strings before returning
@@ -761,8 +757,7 @@ def run_collect(
             )
             ads = []
             ads = scraper.scrape()
-            with open("mobilede_ads_debug.json", "w", encoding="utf-8") as f:
-                json.dump(ads, f, ensure_ascii=False, indent=2)
+
             logger.info("[%s] Scraped %d ads", "Mobile", len(ads))
             source_counts["Mobile"] = len(ads)
             logger.info("Total scraped across sources: %d", len(ads))

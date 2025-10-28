@@ -688,8 +688,6 @@ class ScraperMobilede:
             print("Sleeping 3s...")
             time.sleep(3)
 
-        with open("pre_dedup_mobilede_ads_debug.json", "w", encoding="utf-8") as f:
-            json.dump(results, f, ensure_ascii=False, indent=2)
         # de-dup and trim
         results = self.deduplicate_rows(results, key_field="id")
         if self.max_results:
