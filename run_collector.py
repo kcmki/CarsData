@@ -414,10 +414,6 @@ def map_mobile_to_row(ad: Dict[str, Any]) -> Dict[str, Any]:
         # Images
         "images_nb": _try_int(images.get("nb_images")),
         "images_thumb_url": images.get("thumb_url"),
-        "images_small_url": images.get("small_url"),
-        "images_urls": safe(images.get("urls")),
-        "images_urls_thumb": safe(images.get("urls_thumb")),
-        "images_urls_large": safe(images.get("urls_large")),
 
         # Location
         "location_country_id": loc.get("country_id"),
