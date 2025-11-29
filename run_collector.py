@@ -1,13 +1,13 @@
 """
-Automated collector script: runs the ScraperLBC pipeline and persists results into Supabase (Postgres).
+Automated collector script: runs the ScraperLBC and ScraperMobilede pipelines and persists results into MySQL.
 
 Features:
-- Reads API, headers, cookies, client, and Supabase settings from config.ini
+- Reads API, headers, cookies, client, and MySQL settings from config.ini
 - Retries scraping on errors (configurable)
-- Upserts ads into Supabase with a unique key to avoid duplicates
+- Upserts ads into MySQL with a unique key to avoid duplicates
 - Stores run metadata (success/failure, counts, error) in a 'runs' table
 
-Intended to be scheduled (e.g., cron) to run twice per day on a VPS.
+Intended to be scheduled (e.g., cron) to run periodically on a VPS or Docker container.
 """
 import argparse
 import configparser
@@ -28,14 +28,11 @@ except Exception:
     ScraperMobilede = None  # optional
 
 try:
-    from supabase import create_client, Client
-except Exception as e:
-    raise ImportError("supabase is required. Install with 'pip install supabase'")
-
-try:
-    import psycopg
+    from db_mysql import MySQLClient
+    MYSQL_AVAILABLE = True
 except Exception:
-    psycopg = None  # DSN-based init optional
+    MYSQL_AVAILABLE = False
+    MySQLClient = None
 
 
 logger = logging.getLogger("collector")
@@ -71,36 +68,38 @@ def load_config(path: str) -> Dict[str, Dict[str, Any]]:
 
     if cfg.has_section("collector"):
         out["collector"] = dict(cfg.items("collector"))
+    
+    if cfg.has_section("mysql"):
+        out["mysql"] = dict(cfg.items("mysql"))
 
     return out
 
 
-def get_supabase_client(sb_cfg: Dict[str, Any]) -> Client:
-    url = sb_cfg.get("url")
-    key = sb_cfg.get("key")
-    if not url or not key:
-        raise RuntimeError("Supabase config requires url and key in [supabase] section")
-    return create_client(url, key)
-
-
-def init_supabase_tables_if_needed(sb_cfg: Dict[str, Any], schema_sql_path: str = "supabase_schema.sql"):
-    """Optionally initialize tables via Postgres DSN if provided in config under supabase.dsn.
-    This requires psycopg and a service role DSN (postgresql://user:pass@host:port/dbname).
-    If DSN not provided or psycopg missing, do nothing (user can apply SQL manually).
-    """
-    dsn = sb_cfg.get("dsn")
-    if not dsn or not psycopg:
-        return
-    try:
-        with open(schema_sql_path, "r", encoding="utf-8") as f:
-            sql_text = f.read()
-        with psycopg.connect(dsn) as conn:
-            with conn.cursor() as cur:
-                cur.execute(sql_text)
-                conn.commit()
-        logger.info("Supabase tables initialization completed (if not existing)")
-    except Exception as e:
-        logger.warning("Supabase tables init skipped/failed: %s", e)
+def get_db_client(cfg: Dict[str, Dict[str, Any]]):
+    """Get database client based on USE_MYSQL env var or config."""
+    use_mysql = os.environ.get("USE_MYSQL", "").lower() in ("true", "1", "yes")
+    
+    if use_mysql:
+        if not MYSQL_AVAILABLE:
+            raise RuntimeError("MySQL client not available. Install mysql-connector-python")
+        mysql_cfg = cfg.get("mysql", {})
+        host = os.environ.get("DB_HOST", mysql_cfg.get("host", "localhost"))
+        port = int(os.environ.get("DB_PORT", mysql_cfg.get("port", 3306)))
+        user = os.environ.get("DB_USER", mysql_cfg.get("user", "collector"))
+        password = os.environ.get("DB_PASSWORD", mysql_cfg.get("password", ""))
+        database = os.environ.get("DB_NAME", mysql_cfg.get("database", "cars_collector"))
+        return MySQLClient(host, port, user, password, database), "mysql"
+    else:
+        if not MYSQL_AVAILABLE:
+            raise RuntimeError("MySQL client not available. Install mysql-connector-python or set USE_MYSQL=true")
+        # Fallback to MySQL if USE_MYSQL is not explicitly set
+        mysql_cfg = cfg.get("mysql", {})
+        host = os.environ.get("DB_HOST", mysql_cfg.get("host", "localhost"))
+        port = int(os.environ.get("DB_PORT", mysql_cfg.get("port", 3306)))
+        user = os.environ.get("DB_USER", mysql_cfg.get("user", "collector"))
+        password = os.environ.get("DB_PASSWORD", mysql_cfg.get("password", ""))
+        database = os.environ.get("DB_NAME", mysql_cfg.get("database", "cars_collector"))
+        return MySQLClient(host, port, user, password, database), "mysql"
 
 
 def compute_unique_key(ad: Dict[str, Any]) -> Optional[str]:
@@ -337,6 +336,8 @@ def map_lbc_to_row(ad: Dict[str, Any]) -> Dict[str, Any]:
         "critair": _try_int(_attr_val_label(attrs, "critair")),
         "horsepower_fiscal": _try_int(_attr_val_label(attrs, "horsepower")),
         "horsepower_din": _try_int(_attr_val_label(attrs, "horse_power_din")),
+        # raw payload for reference
+        "raw": ad,
     }
     return row
 
@@ -447,6 +448,9 @@ def map_mobile_to_row(ad: Dict[str, Any]) -> Dict[str, Any]:
         "critair": _try_int(critair),
         "horsepower_fiscal": _try_int(horsepower_fiscal),
         "horsepower_din": _try_int(horsepower_din),
+        
+        # raw payload for reference
+        "raw": ad,
 
     }
 
@@ -455,7 +459,8 @@ def map_mobile_to_row(ad: Dict[str, Any]) -> Dict[str, Any]:
 
 
 
-def upsert_lbc_supabase(supa: Client, lbc_table: str, ads: List[Dict[str, Any]], chunk_size: int = 200) -> Dict[str, int]:
+def upsert_lbc_mysql(db, lbc_table: str, ads: List[Dict[str, Any]], chunk_size: int = 200) -> Dict[str, int]:
+    """Upsert LBC ads into MySQL database."""
     inserted = 0
     updated = 0
     skipped = 0
@@ -472,10 +477,17 @@ def upsert_lbc_supabase(supa: Client, lbc_table: str, ads: List[Dict[str, Any]],
 
     # Fetch existing keys to preserve first_seen semantics
     existing_set = set()
-    for batch in _chunked(keys, 450):
-        res = supa.table(lbc_table).select("unique_key").in_("unique_key", batch).execute()
-        rows = res.data or []
-        for r in rows:
+    try:
+        for batch in _chunked(keys, 450):
+            query = db.table(lbc_table).select("unique_key").in_("unique_key", batch)
+            res = query
+            if res and hasattr(res, 'data'):
+                for r in res.data:
+                    existing_set.add(r.get("unique_key"))
+    except Exception as e:
+        logger.warning(f"Could not fetch existing keys: {e}")
+        existing_set = set()
+        for r in db.table(lbc_table).select("unique_key").data or []:
             existing_set.add(r.get("unique_key"))
     logger.info(f"Len existing in cloud and rescraped: {len(existing_set)}")
     now_iso = datetime.now(timezone.utc).isoformat()
@@ -495,7 +507,7 @@ def upsert_lbc_supabase(supa: Client, lbc_table: str, ads: List[Dict[str, Any]],
         for batch in _chunked(upd_rows, chunk_size):
             if not batch:
                 continue
-            supa.table(lbc_table).upsert(batch, on_conflict="unique_key").execute()
+            db.table(lbc_table).upsert(batch, on_conflict="unique_key")
             updated += len(batch)
     except Exception as e:
         traceback.print_exc()
@@ -506,7 +518,7 @@ def upsert_lbc_supabase(supa: Client, lbc_table: str, ads: List[Dict[str, Any]],
         for batch in _chunked(new_rows, chunk_size):
             if not batch:
                 continue
-            supa.table(lbc_table).upsert(batch, on_conflict="unique_key").execute()
+            db.table(lbc_table).upsert(batch, on_conflict="unique_key")
             inserted += len(batch)
     except Exception as e:
         traceback.print_exc()
@@ -515,7 +527,8 @@ def upsert_lbc_supabase(supa: Client, lbc_table: str, ads: List[Dict[str, Any]],
     return {"inserted": inserted, "updated": updated, "skipped": skipped}
 
 
-def upsert_mobile_supabase(supa: Client, mobile_table: str, ads: List[Dict[str, Any]], chunk_size: int = 200) -> Dict[str, int]:
+def upsert_mobile_mysql(db, mobile_table: str, ads: List[Dict[str, Any]], chunk_size: int = 200) -> Dict[str, int]:
+    """Upsert Mobile.de ads into MySQL database."""
     inserted = 0
     updated = 0
     skipped = 0
@@ -534,14 +547,16 @@ def upsert_mobile_supabase(supa: Client, mobile_table: str, ads: List[Dict[str, 
     existing_set = set()
     try:
         for batch in _chunked(keys, 450):
-            res = supa.table(mobile_table).select("list_id").in_("list_id", batch).execute()
-            rows = res.data or []
-            for r in rows:
-                existing_set.add(r.get("list_id"))
+            query = db.table(mobile_table).select("list_id").in_("list_id", batch)
+            res = query
+            if res and hasattr(res, 'data'):
+                for r in res.data:
+                    existing_set.add(r.get("list_id"))
     except Exception as e:
-        traceback.print_exc()
-        logger.error(f"Error fetching existing keys: {e}")
-
+        logger.warning(f"Could not fetch existing keys: {e}")
+        existing_set = set()
+        for r in db.table(mobile_table).select("list_id").data or []:
+            existing_set.add(r.get("list_id"))
     logger.info(f"Len existing in cloud and rescraped: {len(existing_set)}")
     now_iso = datetime.now(timezone.utc).isoformat()
     new_rows = []
@@ -554,27 +569,28 @@ def upsert_mobile_supabase(supa: Client, mobile_table: str, ads: List[Dict[str, 
         else:
             row["first_seen_at"] = now_iso
             new_rows.append(row)
+
+    # Upsert existing (on_conflict still used but we expect UPDATE path)
     try:
-        # Upsert existing (on_conflict still used but we expect UPDATE path)
         for batch in _chunked(upd_rows, chunk_size):
             if not batch:
                 continue
-            supa.table(mobile_table).upsert(batch, on_conflict="unique_key").execute()
+            db.table(mobile_table).upsert(batch, on_conflict="list_id")
             updated += len(batch)
     except Exception as e:
         traceback.print_exc()
         logger.error(f"Error upserting existing rows: {e}")
+
     # Insert new with upsert to handle race conditions
     try:
         for batch in _chunked(new_rows, chunk_size):
             if not batch:
                 continue
-            supa.table(mobile_table).upsert(batch, on_conflict="unique_key").execute()
+            db.table(mobile_table).upsert(batch, on_conflict="list_id")
             inserted += len(batch)
     except Exception as e:
         traceback.print_exc()
         logger.error(f"Error inserting new rows: {e}")
-
 
     return {"inserted": inserted, "updated": updated, "skipped": skipped}
 
@@ -640,15 +656,16 @@ def run_collect(
     if not normalized:
         normalized = ["lbc", "mobilede"]
 
-    sb_cfg = cfg.get("supabase", {})
-    if not sb_cfg:
-        raise RuntimeError(f"Missing [supabase] configuration in {config_path}")
-    lbc_table = sb_cfg.get("lbc_table", "ads")
-    mobilede_table = sb_cfg.get("mobilede_table", "ads")
-    table_runs = sb_cfg.get("runs_table", "runs")
-    # optional init using DSN if provided
-    init_supabase_tables_if_needed(sb_cfg)
-    supa = get_supabase_client(sb_cfg)
+    # Get database client (MySQL)
+    db_client, db_type = get_db_client(cfg)
+    
+    # Get table names from config
+    mysql_cfg = cfg.get("mysql", {})
+    lbc_table = mysql_cfg.get("lbc_table", "ads_lbc")
+    mobilede_table = mysql_cfg.get("mobilede_table", "ads_mobilede")
+    table_runs = mysql_cfg.get("runs_table", "runs")
+    
+    db = db_client  # Use db as the variable name
 
     attempt = 0
     start_time = datetime.now(timezone.utc)
@@ -681,7 +698,7 @@ def run_collect(
 
             logger.info("Total scraped across sources: %d", len(ads))
 
-            stats = upsert_lbc_supabase(supa, lbc_table, ads)
+            stats = upsert_lbc_mysql(db, lbc_table, ads)
             # persist seen ids locally for future runs
             try:
                 conn = sqlite3.connect(db_path)
@@ -709,7 +726,7 @@ def run_collect(
                 "count_scraped": len(ads),
                 "stats": {**stats, "source_counts": source_counts},
             }
-            supa.table(table_runs).insert(run_doc_lbc).execute()
+            db.table(table_runs).insert(run_doc_lbc)
             break  # success, exit retry loop
         except Exception as e:
             last_error = str(e)
@@ -727,11 +744,10 @@ def run_collect(
                         "success": False,
                         "error": last_error,
                     }
-                    supa.table(table_runs).insert(run_doc_lbc).execute()
+                    db.table(table_runs).insert(run_doc_lbc)
                 except Exception as e2:
-                    logger.error("Failed to log failed run to Supabase: %s", e2)
+                    logger.error("Failed to log failed run to database: %s", e2)
                     run_doc_lbc = run_doc_lbc
-                
 
     logger.info("Now doing Mobilede")
     attempt = 0
@@ -758,7 +774,7 @@ def run_collect(
             source_counts["Mobile"] = len(ads)
             logger.info("Total scraped across sources: %d", len(ads))
 
-            stats = upsert_mobile_supabase(supa, mobilede_table, ads)
+            stats = upsert_mobile_mysql(db, mobilede_table, ads)
             # persist seen ids locally for future runs
             try:
                 conn = sqlite3.connect(db_path)
@@ -787,7 +803,7 @@ def run_collect(
                 "stats": {**stats, "source_counts": source_counts},
             }
             
-            supa.table(table_runs).insert(run_doc_mobile).execute()
+            db.table(table_runs).insert(run_doc_mobile)
             break
         except Exception as e:
             last_error = str(e)
@@ -805,11 +821,10 @@ def run_collect(
                         "success": False,
                         "error": last_error,
                     }
-                    supa.table(table_runs).insert(run_doc_mobile).execute()
+                    db.table(table_runs).insert(run_doc_mobile)
                 except Exception as e2:
-                    logger.error("Failed to log failed run to Supabase: %s", e2)
+                    logger.error("Failed to log failed run to database: %s", e2)
                     run_doc_mobile = run_doc_mobile
-                
     success = (run_doc_lbc.get("success") if 'run_doc_lbc' in locals() else False) and (run_doc_mobile.get("success") if 'run_doc_mobile' in locals() else False)
     return {
         "success": success,

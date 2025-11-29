@@ -2,8 +2,26 @@
 {% block content %}
   <div class="grid cards fade-in">
     <section class="card">
+      <h2 style="margin:0 0 .5rem 0">Base de données</h2>
+      <div class="muted">Total annonces</div>
+      <div><strong style="font-size:1.5rem">{{ total_count }}</strong></div>
+      <div style="margin-top:.5rem">
+        <div class="muted">LBC</div>
+        <div><strong>{{ lbc_count }}</strong></div>
+      </div>
+      <div style="margin-top:.5rem">
+        <div class="muted">Mobile.de</div>
+        <div><strong>{{ mobilede_count }}</strong></div>
+      </div>
+      <div style="margin-top:1rem">
+        <a href="/ads?source=all" class="btn">Voir les annonces →</a>
+      </div>
+    </section>
+
+    <section class="card">
       <h2 style="margin:0 0 .5rem 0">Dernier run</h2>
       {% if last_run %}
+        <div class="muted">Source: {{ last_run.source }}</div>
         <div class="muted">Terminé à</div>
         <div><strong>{{ last_run.finished_at }}</strong></div>
         <div class="muted" style="margin-top:.5rem">Succès</div>

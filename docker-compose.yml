@@ -1,0 +1,53 @@
+version: '3.8'
+
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: cars_collector_db
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: cars_collector
+      MYSQL_USER: collector
+      MYSQL_PASSWORD: collectorpass
+    ports:
+      - "3307:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ./mysql_schema.sql:/docker-entrypoint-initdb.d/schema.sql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-prootpassword"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - collector_network
+
+  app:
+    build: .
+    container_name: cars_collector_app
+    depends_on:
+      mysql:
+        condition: service_healthy
+    environment:
+      - DB_HOST=mysql
+      - DB_PORT=3306
+      - DB_USER=collector
+      - DB_PASSWORD=collectorpass
+      - DB_NAME=cars_collector
+      - USE_MYSQL=true
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./config.ini:/app/config.ini
+      - ./local_cache.db:/app/local_cache.db
+      - ./files:/app/files
+    networks:
+      - collector_network
+    command: uvicorn web_app:app --host 0.0.0.0 --port 8000 --reload
+
+volumes:
+  mysql_data:
+
+networks:
+  collector_network:
+    driver: bridge

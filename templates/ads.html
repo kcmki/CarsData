@@ -1,8 +1,17 @@
 {% extends 'base.html' %}
 {% block content %}
   <section class="card fade-in">
-    <h2 style="margin:0 0 .6rem 0">Annonces</h2>
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:.6rem">
+      <h2 style="margin:0">Annonces ({{ rows|length }})</h2>
+      <div style="display:flex;gap:.5rem">
+        <a href="?source=all" class="btn {{ 'primary' if source == 'all' else '' }}">Toutes</a>
+        <a href="?source=lbc" class="btn {{ 'primary' if source == 'lbc' else '' }}">LBC</a>
+        <a href="?source=mobilede" class="btn {{ 'primary' if source == 'mobilede' else '' }}">Mobile.de</a>
+      </div>
+    </div>
+    
     <form method="get" class="controls" style="margin-bottom:.8rem">
+      <input type="hidden" name="source" value="{{ source }}" />
       <input type="text" name="q" value="{{ filters.q }}" placeholder="Recherche globale (titre, marque, modèle)" />
       <input type="text" name="brand" value="{{ filters.brand }}" placeholder="Marque" />
       <input type="text" name="model" value="{{ filters.model }}" placeholder="Modèle" />
@@ -25,6 +34,7 @@
             <th>Publication</th>
             <th>Ville</th>
             <th>CP</th>
+            <th>URL</th>
           </tr>
         </thead>
         <tbody>
@@ -38,6 +48,7 @@
             <td>{{ r.first_publication_date or r.index_date }}</td>
             <td>{{ r.location_city }}</td>
             <td>{{ r.location_zipcode }}</td>
+            <td>{% if r.url %}<a href="{{ r.url }}" target="_blank" class="btn">→</a>{% endif %}</td>
           </tr>
           {% endfor %}
         </tbody>
@@ -47,8 +58,12 @@
     <div style="display:flex;justify-content:space-between;align-items:center;margin-top:.8rem">
       <div class="muted">Page {{ page }}</div>
       <div style="display:flex;gap:.5rem">
-        <a class="btn" href="?{{ request.query_params|dict|update({'page': (page-1) if page>1 else 1}) or request.query_params }}">◀ Précédent</a>
-        <a class="btn" href="?{{ request.query_params|dict|update({'page': (page+1)}) or request.query_params }}">Suivant ▶</a>
+        {% if page > 1 %}
+          <a class="btn" href="?source={{ source }}&page={{ page - 1 }}{% if filters.q %}&q={{ filters.q }}{% endif %}{% if filters.brand %}&brand={{ filters.brand }}{% endif %}{% if filters.model %}&model={{ filters.model }}{% endif %}{% if filters.reg_from %}&reg_from={{ filters.reg_from }}{% endif %}{% if filters.reg_to %}&reg_to={{ filters.reg_to }}{% endif %}{% if filters.min_price %}&min_price={{ filters.min_price }}{% endif %}{% if filters.max_price %}&max_price={{ filters.max_price }}{% endif %}">◀ Précédent</a>
+        {% else %}
+          <span class="btn muted">◀ Précédent</span>
+        {% endif %}
+        <a class="btn" href="?source={{ source }}&page={{ page + 1 }}{% if filters.q %}&q={{ filters.q }}{% endif %}{% if filters.brand %}&brand={{ filters.brand }}{% endif %}{% if filters.model %}&model={{ filters.model }}{% endif %}{% if filters.reg_from %}&reg_from={{ filters.reg_from }}{% endif %}{% if filters.reg_to %}&reg_to={{ filters.reg_to }}{% endif %}{% if filters.min_price %}&min_price={{ filters.min_price }}{% endif %}{% if filters.max_price %}&max_price={{ filters.max_price }}{% endif %}">Suivant ▶</a>
       </div>
     </div>
   </section>

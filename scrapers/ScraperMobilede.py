@@ -355,7 +355,8 @@ class ScraperMobilede:
         )
         subject = self._text(title_el)
         if subject:
-            subject = re.sub(r"^Sponsorisée\s*", "", subject, flags=re.IGNORECASE).strip()
+            # Remove common badge text (NOUVEAU, Sponsorisée, etc.)
+            subject = re.sub(r"^(NOUVEAU|Sponsorisée)\s*", "", subject, flags=re.IGNORECASE).strip()
 
         # --- PRICE ---
         price_el = art.select_one(
