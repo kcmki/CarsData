@@ -1,0 +1,185 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model AdsLbc {
+  uniqueKey              String   @id @map("unique_key") @db.VarChar(255)
+  listId                 BigInt?  @map("list_id")
+  url                    String?  @db.Text
+  subject                String?  @db.Text
+  body                   String?  @db.Text
+  categoryId             String?  @map("category_id") @db.VarChar(100)
+  categoryName           String?  @map("category_name") @db.VarChar(255)
+  adType                 String?  @map("ad_type") @db.VarChar(50)
+  status                 String?  @db.VarChar(50)
+  priceCents             BigInt?  @map("price_cents")
+  price                  Decimal? @db.Decimal(12, 2)
+  firstPublicationDate   String?  @map("first_publication_date") @db.VarChar(50)
+  expirationDate         String?  @map("expiration_date") @db.VarChar(50)
+  indexDate              String?  @map("index_date") @db.VarChar(50)
+  hasPhone               Boolean? @map("has_phone")
+  
+  // images
+  imagesNb               Int?     @map("images_nb")
+  imagesThumbUrl         String?  @map("images_thumb_url") @db.Text
+  imagesSmallUrl         String?  @map("images_small_url") @db.Text
+  imagesUrls             Json?    @map("images_urls")
+  imagesUrlsThumb        Json?    @map("images_urls_thumb")
+  imagesUrlsLarge        Json?    @map("images_urls_large")
+  
+  // location
+  locationCountryId      String?  @map("location_country_id") @db.VarChar(10)
+  locationRegionId       String?  @map("location_region_id") @db.VarChar(50)
+  locationRegionName     String?  @map("location_region_name") @db.VarChar(255)
+  locationDepartmentId   String?  @map("location_department_id") @db.VarChar(50)
+  locationDepartmentName String?  @map("location_department_name") @db.VarChar(255)
+  locationCity           String?  @map("location_city") @db.VarChar(255)
+  locationZipcode        String?  @map("location_zipcode") @db.VarChar(20)
+  locationLat            Float?   @map("location_lat")
+  locationLng            Float?   @map("location_lng")
+  
+  // owner
+  ownerStoreId           String?  @map("owner_store_id") @db.VarChar(100)
+  ownerUserId            String?  @map("owner_user_id") @db.VarChar(100)
+  ownerType              String?  @map("owner_type") @db.VarChar(50)
+  ownerName              String?  @map("owner_name") @db.VarChar(255)
+  
+  // attributes main
+  carBrand               String?  @map("car_brand") @db.VarChar(255)
+  carModel               String?  @map("car_model") @db.VarChar(255)
+  regdate                String?  @db.VarChar(50)
+  mileage                Int?
+  fuelLabel              String?  @map("fuel_label") @db.VarChar(255)
+  gearboxLabel           String?  @map("gearbox_label") @db.VarChar(255)
+  doors                  Int?
+  seats                  Int?
+  issuanceDate           String?  @map("issuance_date") @db.VarChar(50)
+  vehicleType            String?  @map("vehicle_type") @db.VarChar(255)
+  vehiculeColor          String?  @map("vehicule_color") @db.VarChar(255)
+  critair                Int?
+  horsepowerFiscal       Int?     @map("horsepower_fiscal")
+  horsepowerDin          Int?     @map("horsepower_din")
+  
+  // raw payload for reference
+  raw                    Json?
+  firstSeenAt            String?  @map("first_seen_at") @db.VarChar(50)
+  updatedAt              String?  @map("updated_at") @db.VarChar(50)
+
+  @@index([carBrand], map: "idx_brand")
+  @@index([carModel], map: "idx_model")
+  @@index([price], map: "idx_price")
+  @@index([regdate], map: "idx_regdate")
+  @@index([firstPublicationDate], map: "idx_first_pub")
+  @@map("ads_lbc")
+}
+
+model AdsMobilede {
+  uniqueKey              String   @id @map("unique_key") @db.VarChar(255)
+  listId                 BigInt?  @map("list_id")
+  url                    String?  @db.Text
+  subject                String?  @db.Text
+  body                   String?  @db.Text
+  categoryId             String?  @map("category_id") @db.VarChar(100)
+  categoryName           String?  @map("category_name") @db.VarChar(255)
+  adType                 String?  @map("ad_type") @db.VarChar(50)
+  status                 String?  @db.VarChar(50)
+  priceCents             BigInt?  @map("price_cents")
+  price                  Decimal? @db.Decimal(12, 2)
+  firstPublicationDate   String?  @map("first_publication_date") @db.VarChar(50)
+  expirationDate         String?  @map("expiration_date") @db.VarChar(50)
+  indexDate              String?  @map("index_date") @db.VarChar(50)
+  hasPhone               Boolean? @map("has_phone")
+  
+  // images
+  imagesNb               Int?     @map("images_nb")
+  imagesThumbUrl         String?  @map("images_thumb_url") @db.Text
+  imagesSmallUrl         String?  @map("images_small_url") @db.Text
+  imagesUrls             Json?    @map("images_urls")
+  imagesUrlsThumb        Json?    @map("images_urls_thumb")
+  imagesUrlsLarge        Json?    @map("images_urls_large")
+  
+  // location
+  locationCountryId      String?  @map("location_country_id") @db.VarChar(10)
+  locationRegionId       String?  @map("location_region_id") @db.VarChar(50)
+  locationRegionName     String?  @map("location_region_name") @db.VarChar(255)
+  locationDepartmentId   String?  @map("location_department_id") @db.VarChar(50)
+  locationDepartmentName String?  @map("location_department_name") @db.VarChar(255)
+  locationCity           String?  @map("location_city") @db.VarChar(255)
+  locationZipcode        String?  @map("location_zipcode") @db.VarChar(20)
+  locationLat            Float?   @map("location_lat")
+  locationLng            Float?   @map("location_lng")
+  
+  // owner
+  ownerStoreId           String?  @map("owner_store_id") @db.VarChar(100)
+  ownerUserId            String?  @map("owner_user_id") @db.VarChar(100)
+  ownerType              String?  @map("owner_type") @db.VarChar(50)
+  ownerName              String?  @map("owner_name") @db.VarChar(255)
+  
+  // attributes main
+  carBrand               String?  @map("car_brand") @db.VarChar(255)
+  carModel               String?  @map("car_model") @db.VarChar(255)
+  regdate                String?  @db.VarChar(50)
+  mileage                Int?
+  fuelLabel              String?  @map("fuel_label") @db.VarChar(255)
+  gearboxLabel           String?  @map("gearbox_label") @db.VarChar(255)
+  doors                  Int?
+  seats                  Int?
+  issuanceDate           String?  @map("issuance_date") @db.VarChar(50)
+  vehicleType            String?  @map("vehicle_type") @db.VarChar(255)
+  vehiculeColor          String?  @map("vehicule_color") @db.VarChar(255)
+  critair                Int?
+  horsepowerFiscal       Int?     @map("horsepower_fiscal")
+  horsepowerDin          Int?     @map("horsepower_din")
+  
+  // raw payload for reference
+  raw                    Json?
+  firstSeenAt            String?  @map("first_seen_at") @db.VarChar(50)
+  updatedAt              String?  @map("updated_at") @db.VarChar(50)
+
+  @@index([carBrand], map: "idx_brand")
+  @@index([carModel], map: "idx_model")
+  @@index([price], map: "idx_price")
+  @@index([regdate], map: "idx_regdate")
+  @@index([firstPublicationDate], map: "idx_first_pub")
+  @@map("ads_mobilede")
+}
+
+model Evaluation {
+  id                String   @id @default(uuid())
+  userId            String?  @map("user_id")
+  subject           String?  @db.Text
+  locationCountryId String?  @map("location_country_id") @db.VarChar(50)
+  locationCity      String?  @map("location_city") @db.VarChar(255)
+  carBrand          String   @map("car_brand") @db.VarChar(255)
+  carModel          String   @map("car_model") @db.VarChar(255)
+  regdate           String?  @db.VarChar(50)
+  mileage           Int
+  fuelLabel         String?  @map("fuel_label") @db.VarChar(255)
+  gearboxLabel      String?  @map("gearbox_label") @db.VarChar(255)
+  doors             Int?
+  seats             Int?
+  vehiculeColor     String?  @map("vehicule_color") @db.VarChar(255)
+  horsepowerDin     Int?     @map("horsepower_din")
+  predictedPrice    Decimal  @map("predicted_price") @db.Decimal(10, 2)
+  priceRangeMin     Decimal  @map("price_range_min") @db.Decimal(10, 2)
+  priceRangeMax     Decimal  @map("price_range_max") @db.Decimal(10, 2)
+  confidence        Float
+  similarCarsCount  Int      @map("similar_cars_count")
+  isPaid            Boolean  @default(false) @map("is_paid")
+  createdAt         DateTime @default(now()) @map("created_at")
+
+  @@index([userId])
+  @@index([carBrand, carModel])
+  @@map("car_evaluations")
+}

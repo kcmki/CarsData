@@ -1,8 +1,0 @@
-curl-cffi
-pymongo
-fastapi
-uvicorn
-APScheduler
-jinja2
-beautifulsoup4
-mysql-connector-python
