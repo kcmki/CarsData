@@ -5,12 +5,19 @@ Replaces Supabase client with local MySQL operations.
 import json
 from datetime import datetime
 from typing import Dict, Any, List, Optional
-import mysql.connector
-from mysql.connector import pooling
+try:
+    import mysql.connector
+    from mysql.connector import pooling
+except ImportError:
+    # db_sqlite imports TableQuery/QueryResult from here, and must work without the connector
+    mysql = None
+    pooling = None
 
 
 class MySQLClient:
     def __init__(self, host: str, port: int, user: str, password: str, database: str):
+        if pooling is None:
+            raise RuntimeError("mysql-connector-python is not installed")
         self.pool = pooling.MySQLConnectionPool(
             pool_name="collector_pool",
             pool_size=5,

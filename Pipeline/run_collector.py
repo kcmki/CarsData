@@ -34,6 +34,18 @@ except Exception:
     MYSQL_AVAILABLE = False
     MySQLClient = None
 
+try:
+    from db_sqlite import SQLiteClient
+    SQLITE_AVAILABLE = True
+except Exception:
+    SQLITE_AVAILABLE = False
+    SQLiteClient = None
+
+# SQLite fallback lives next to this file, in the same db as the seen-ids cache
+SQLITE_PATH = os.environ.get(
+    "SQLITE_PATH", os.path.join(os.path.dirname(os.path.abspath(__file__)), "local_cache.db")
+)
+
 
 logger = logging.getLogger("collector")
 handler = logging.StreamHandler(sys.stdout)
@@ -76,30 +88,26 @@ def load_config(path: str) -> Dict[str, Dict[str, Any]]:
 
 
 def get_db_client(cfg: Dict[str, Dict[str, Any]]):
-    """Get database client based on USE_MYSQL env var or config."""
-    use_mysql = os.environ.get("USE_MYSQL", "").lower() in ("true", "1", "yes")
-    
-    if use_mysql:
-        if not MYSQL_AVAILABLE:
-            raise RuntimeError("MySQL client not available. Install mysql-connector-python")
+    """Return (client, kind): MySQL when reachable, else the local SQLite fallback.
+
+    Set USE_MYSQL=false to force SQLite (e.g. dev without the Docker MySQL running).
+    """
+    if os.environ.get("USE_MYSQL", "true").lower() not in ("false", "0", "no") and MYSQL_AVAILABLE:
         mysql_cfg = cfg.get("mysql", {})
         host = os.environ.get("DB_HOST", mysql_cfg.get("host", "localhost"))
         port = int(os.environ.get("DB_PORT", mysql_cfg.get("port", 3306)))
         user = os.environ.get("DB_USER", mysql_cfg.get("user", "collector"))
         password = os.environ.get("DB_PASSWORD", mysql_cfg.get("password", ""))
         database = os.environ.get("DB_NAME", mysql_cfg.get("database", "cars_collector"))
-        return MySQLClient(host, port, user, password, database), "mysql"
-    else:
-        if not MYSQL_AVAILABLE:
-            raise RuntimeError("MySQL client not available. Install mysql-connector-python or set USE_MYSQL=true")
-        # Fallback to MySQL if USE_MYSQL is not explicitly set
-        mysql_cfg = cfg.get("mysql", {})
-        host = os.environ.get("DB_HOST", mysql_cfg.get("host", "localhost"))
-        port = int(os.environ.get("DB_PORT", mysql_cfg.get("port", 3306)))
-        user = os.environ.get("DB_USER", mysql_cfg.get("user", "collector"))
-        password = os.environ.get("DB_PASSWORD", mysql_cfg.get("password", ""))
-        database = os.environ.get("DB_NAME", mysql_cfg.get("database", "cars_collector"))
-        return MySQLClient(host, port, user, password, database), "mysql"
+        try:
+            # constructing the pool opens connections, so this doubles as a reachability check
+            return MySQLClient(host, port, user, password, database), "mysql"
+        except Exception as e:
+            logger.warning("MySQL unavailable (%s) - falling back to SQLite at %s", e, SQLITE_PATH)
+
+    if not SQLITE_AVAILABLE:
+        raise RuntimeError("Neither MySQL nor the SQLite fallback is available")
+    return SQLiteClient(SQLITE_PATH), "sqlite"
 
 
 def compute_unique_key(ad: Dict[str, Any]) -> Optional[str]:
@@ -479,15 +487,14 @@ def upsert_lbc_mysql(db, lbc_table: str, ads: List[Dict[str, Any]], chunk_size: 
     existing_set = set()
     try:
         for batch in _chunked(keys, 450):
-            query = db.table(lbc_table).select("unique_key").in_("unique_key", batch)
-            res = query
+            res = db.table(lbc_table).select("unique_key").in_("unique_key", batch).execute()
             if res and hasattr(res, 'data'):
                 for r in res.data:
                     existing_set.add(r.get("unique_key"))
     except Exception as e:
         logger.warning(f"Could not fetch existing keys: {e}")
         existing_set = set()
-        for r in db.table(lbc_table).select("unique_key").data or []:
+        for r in db.table(lbc_table).select("unique_key").execute().data or []:
             existing_set.add(r.get("unique_key"))
     logger.info(f"Len existing in cloud and rescraped: {len(existing_set)}")
     now_iso = datetime.now(timezone.utc).isoformat()
@@ -547,15 +554,14 @@ def upsert_mobile_mysql(db, mobile_table: str, ads: List[Dict[str, Any]], chunk_
     existing_set = set()
     try:
         for batch in _chunked(keys, 450):
-            query = db.table(mobile_table).select("list_id").in_("list_id", batch)
-            res = query
+            res = db.table(mobile_table).select("list_id").in_("list_id", batch).execute()
             if res and hasattr(res, 'data'):
                 for r in res.data:
                     existing_set.add(r.get("list_id"))
     except Exception as e:
         logger.warning(f"Could not fetch existing keys: {e}")
         existing_set = set()
-        for r in db.table(mobile_table).select("list_id").data or []:
+        for r in db.table(mobile_table).select("list_id").execute().data or []:
             existing_set.add(r.get("list_id"))
     logger.info(f"Len existing in cloud and rescraped: {len(existing_set)}")
     now_iso = datetime.now(timezone.utc).isoformat()
@@ -610,7 +616,8 @@ def run_collect(
     impersonate = client_cfg.get("impersonate", "chrome131")
 
     # Load existing IDs from local SQLite cache if nodup
-    existing_ids_set = None
+    existing_lbc_ids_set = None
+    existing_mobilede_ids_set = None
     db_path = os.path.join(os.path.dirname(config_path) or ".", "local_cache.db")
     if nodup:
         try:
